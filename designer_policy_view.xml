@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--竟稿申请 form-->
+        <record model="ir.ui.view" id="view_designer_policy_form">
+            <field name="name">designer.policy.form</field>
+            <field name="model">designer.policy</field>
+            <field name="arch" type="xml">
+                <form string="创意策略" version="7.0">
+                    <header>
+                        <button name="designer_project_open" string="开启" states="draft" class="oe_highlight"/>
+                        <button name="designer_project_close" string="批准" states="open" class="oe_highlight"/>
+                        <button name="designer_project_cancel" string="拒绝" states="open"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                    </header>
+                    <sheet>
+                        <label for="policy_no"/>
+                        <h1><field name="policy_no"/></h1>
+                        <group>
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="note"/>
+                            <separator string="创意策略" colspan="4"/>
+                            <field name="policy_line">
+                                    <tree string="创意策略列表">
+                                        <field name="line_no"/>
+                                        <field name="name"/>
+                                        <field name="summary"/>
+                                        <field name="datas_fname"/>
+                                        <field name="state"/>
+                                    </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--竟稿申请 tree-->
+
+        <record model="ir.ui.view" id="view_designer_policy_tree">
+            <field name="name">designer.policy.tree</field>
+            <field name="model">designer.policy</field>
+            <field name="arch" type="xml">
+            <tree string="创意策略">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="policy_no"/>
+                <field name="state"/>
+            </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_designer_policy">
+            <field name="name">创意策略</field>
+            <field name="res_model">designer.policy</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="idea.view_idea_idea_search"/>-->
+        </record>
+        <menuitem name="创意策略" parent="base.menu_base_designer_idea_ strategy_9" id="menu_designer_policy_report" action="action_designer_policy" sequence="1"/>
+
+
+                <!--竟稿申请 form-->
+        <record model="ir.ui.view" id="view_designer_policy_line_form">
+            <field name="name">designer.policy.line.form</field>
+            <field name="model">designer.policy.line</field>
+            <field name="arch" type="xml">
+                <form string="创意策略" version="7.0">
+                    <sheet>
+                        <label for="line_no"/>
+                        <h1><field name="line_no"/></h1>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="summary"/>
+                            <field name="datas" filename="datas_fname"/>
+                            <field name="datas_fname" invisible="1" class="oe_inline oe_right"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--竟稿申请 tree-->
+
+        <record model="ir.ui.view" id="view_designer_policy_line_tree">
+            <field name="name">designer.policy.line.tree</field>
+            <field name="model">designer.policy.line</field>
+            <field name="arch" type="xml">
+            <tree string="创意策略">
+                <field name="name"/>
+                <field name="line_no"/>
+                <field name="date"/>
+                <field name="summary"/>
+                <field name="datas_fname"/>
+                <field name="state"/>
+            </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

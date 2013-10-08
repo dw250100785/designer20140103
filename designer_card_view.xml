@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--定义创意简报 form-->
+        <record model="ir.ui.view" id="view_designer_card_form">
+            <field name="name">designer.card.form</field>
+            <field name="model">designer.card</field>
+            <field name="arch" type="xml">
+                <form string="工作卡" version="7.0">
+                    <header>
+                        <button name="designer_project_open" string="开启" states="draft" class="oe_highlight"/>
+                        <button name="designer_project_close" string="批准" states="open" class="oe_highlight"/>
+                        <button name="designer_project_cancel" string="拒绝" states="open"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                    </header>
+                    <sheet>
+                        <label for="project_id"/>
+                        <h1><field name="project_id"/></h1>
+                        <label for="card_no"/>
+                        <h1><field name="card_no"/></h1>
+
+                        <field name="card_line">
+                                <tree editable="bottom" string="物料清单">
+                                    <field name="line_no"/>
+                                    <field name="project_request"/>
+                                    <field name="number" />
+                                    <field name="price"/>
+                                    <field name="subprice"/>
+                                    <field name="note"/>
+                                </tree>
+                        </field>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!--定义创意简报 tree-->
+
+        <record model="ir.ui.view" id="view_designer_card_tree">
+            <field name="name">designer.card.tree</field>
+            <field name="model">designer.card</field>
+            <field name="arch" type="xml">
+            <tree colors="blue:state == 'draft';black:state in ('open','close');gray:state == 'cancel'" string="工作卡">
+                <field name="card_no"/>
+                <field name="project_id"/>
+                <field name="state"/>
+            </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_designer_card">
+            <field name="name">工作卡</field>
+            <field name="res_model">designer.card</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="search_view_id" ref="idea.view_idea_idea_search"/>-->
+        </record>
+        <menuitem name="工作卡" parent="base.menu_base_designer_card_1" id="menu_designer_card_report" action="action_designer_card" sequence="1"/>
+
+
+        <!--定义创意简报 form-->
+        <record model="ir.ui.view" id="view_designer_card_line_form">
+            <field name="name">designer.card.line.form</field>
+            <field name="model">designer.card.line</field>
+            <field name="arch" type="xml">
+                <form string="工作卡物料单" version="7.0">
+                    <sheet>
+                        <field name="line_no"/>
+                        <field name="project_request"/>
+                        <field name="number"/>
+                        <field name="price"/>
+                        <field name="subprice"/>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义创意简报 tree-->
+
+        <record model="ir.ui.view" id="view_designer_card_line_tree">
+            <field name="name">designer.card.line.tree</field>
+            <field name="model">designer.card.line</field>
+            <field name="arch" type="xml">
+            <tree  string="工作卡物料单">
+                <field name="line_no"/>
+                <field name="project_request"/>
+                <field name="number"/>
+                <field name="price"/>
+                <field name="subprice"/>
+                <field name="note"/>
+            </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

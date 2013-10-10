@@ -52,6 +52,7 @@ mail
         'designer_order_view.xml',
         'designer_paper_view.xml',
         'designer_policy_view.xml',
+        'designer_quotation_view.xml',
         'designer_user.xml',
         'security/designer_security.xml',
         'security/ir.model.access.csv',

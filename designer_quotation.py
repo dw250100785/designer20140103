@@ -19,15 +19,24 @@
 #
 ##############################################################################
 
-import designer        #项目简报
-import designer_brand  #品牌
-import designer_idea   #创意简报
-import designer_card   #工作卡
-import designer_archive   #项目备档单
-import designer_order   #项目工单
-import designer_paper   #竟稿申请
-import designer_policy   #创意策略
-import designer_quotation   #创意策略
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+from openerp.osv import osv
+from openerp.osv import fields
+from openerp.tools.translate import _
+import time
+
+class purchase_order(osv.osv):
+    """ 扩展内部询价单"""
+    _name = "purchase.order"
+    _inherit = ['purchase.order']
+    _columns = {
+        'project_ids': fields.many2one('designer.project', string='项目简报'),
+    }
+
+class sale_order(osv.osv):
+    """ 扩展报价单"""
+    _name = "sale.order"
+    _inherit = ['sale.order']
+    _columns = {
+        'project_ids': fields.many2one('designer.project', string='项目简报'),
+    }
+

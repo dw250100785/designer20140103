@@ -30,6 +30,7 @@ class purchase_order(osv.osv):
     _inherit = ['purchase.order']
     _columns = {
         'project_ids': fields.many2one('designer.project', string='项目简报'),
+        'card_line': fields.one2many('designer.card.line', 'card_id', '物料清单'),
     }
 
 class sale_order(osv.osv):
@@ -38,5 +39,6 @@ class sale_order(osv.osv):
     _inherit = ['sale.order']
     _columns = {
         'project_ids': fields.many2one('designer.project', string='项目简报'),
+        'card_line': fields.one2many('designer.card.line', 'card_id', '物料清单'),
     }
 

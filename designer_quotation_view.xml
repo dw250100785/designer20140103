@@ -11,6 +11,18 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="project_ids"/>
                 </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Purchase Order']" position="inside">
+                    <field name="card_line">
+                            <tree editable="bottom" string="物料清单">
+                                <field name="line_no"/>
+                                <field name="project_request"/>
+                                <field name="number" />
+                                <field name="price"/>
+                                <field name="subprice"/>
+                                <field name="note"/>
+                            </tree>
+                    </field>
+                </xpath>
             </field>
         </record>
 
@@ -34,6 +46,20 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="project_ids"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Order Lines']" position="inside">
+                    <group>
+                        <field name="card_line">
+                            <tree editable="bottom" string="物料清单">
+                                <field name="line_no"/>
+                                <field name="project_request"/>
+                                <field name="number" />
+                                <field name="price"/>
+                                <field name="subprice"/>
+                                <field name="note"/>
+                            </tree>
+                        </field>
+                    </group>
                 </xpath>
             </field>
         </record>

@@ -28,6 +28,7 @@ import designer_order   #项目工单
 import designer_paper   #竟稿申请
 import designer_policy   #创意策略
 import designer_quotation   #创意策略
+import designer_invoice   #发票扩展
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')

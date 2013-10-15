@@ -76,6 +76,78 @@
             </field>
         </record>
 
+
+        <!-- designer.purchase.line  询价单 card.line-->
+
+
+        <!--定义创意简报 form-->
+        <record model="ir.ui.view" id="view_designer_purchase_line_form">
+            <field name="name">designer.purchase.line.form</field>
+            <field name="model">designer.purchase.line</field>
+            <field name="arch" type="xml">
+                <form string="工作卡物料单" version="7.0">
+                    <sheet>
+                        <field name="line_no"/>
+                        <field name="project_request"/>
+                        <field name="number"/>
+                        <field name="price"/>
+                        <field name="subprice"/>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义创意简报 tree-->
+
+        <record model="ir.ui.view" id="view_designer_purchase_line_tree">
+            <field name="name">designer.purchase.line.tree</field>
+            <field name="model">designer.purchase.line</field>
+            <field name="arch" type="xml">
+            <tree  string="工作卡物料单">
+                <field name="line_no"/>
+                <field name="project_request"/>
+                <field name="number"/>
+                <field name="price"/>
+                <field name="subprice"/>
+                <field name="note"/>
+            </tree>
+            </field>
+        </record>
+        <!--报价单 sale.order card.line-->
+
+        <record model="ir.ui.view" id="view_designer_sale_line_form">
+            <field name="name">designer.sale.line.form</field>
+            <field name="model">designer.sale.line</field>
+            <field name="arch" type="xml">
+                <form string="工作卡物料单" version="7.0">
+                    <sheet>
+                        <field name="line_no"/>
+                        <field name="project_request"/>
+                        <field name="number"/>
+                        <field name="price"/>
+                        <field name="subprice"/>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义创意简报 tree-->
+
+        <record model="ir.ui.view" id="view_designer_sale_line_tree">
+            <field name="name">designer.sale.line.tree</field>
+            <field name="model">designer.sale.line</field>
+            <field name="arch" type="xml">
+            <tree  string="工作卡物料单">
+                <field name="line_no"/>
+                <field name="project_request"/>
+                <field name="number"/>
+                <field name="price"/>
+                <field name="subprice"/>
+                <field name="note"/>
+            </tree>
+            </field>
+        </record>
+
     </data>
 </openerp>
 

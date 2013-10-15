@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import openerp.addons.decimal_precision as dp
 
 from openerp.osv import osv
 from openerp.osv import fields
@@ -30,8 +31,29 @@ class purchase_order(osv.osv):
     _inherit = ['purchase.order']
     _columns = {
         'project_ids': fields.many2one('designer.project', string='项目简报'),
-        'card_line': fields.one2many('designer.card.line', 'card_id', '物料清单'),
+        'card_line': fields.one2many('designer.purchase.line', 'card_id', '物料清单'),
     }
+
+class designer_purchase_line(osv.osv):
+    """ 项目工作卡物料管理"""
+    _name = 'designer.purchase.line'
+    _inherit = ['mail.thread']
+    _columns = {
+        'card_id': fields.many2one('purchase.order', '工作卡', ondelete='cascade', select=True),
+        'line_no': fields.char('编号', required=True,change_default=True, select=True, track_visibility='always'),
+        'project_request': fields.text('项目要求', size=64, required=True, change_default=True, select=True, track_visibility='always'),
+        'number': fields.integer('数量', required=True, change_default=True, select=True, track_visibility='always'),
+        'price': fields.float('价格',digits_compute= dp.get_precision('Price'), required=True, change_default=True, select=True, track_visibility='always'),
+        'subprice': fields.float('总价', required=True, change_default=True, select=True, track_visibility='always'),
+        'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
+    }
+    _sql_constraints = [
+        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+    ]
+    _defaults = {
+    }
+    _order = 'line_no asc'
+
 
 class sale_order(osv.osv):
     """ 扩展报价单"""
@@ -39,6 +61,25 @@ class sale_order(osv.osv):
     _inherit = ['sale.order']
     _columns = {
         'project_ids': fields.many2one('designer.project', string='项目简报'),
-        'card_line': fields.one2many('designer.card.line', 'card_id', '物料清单'),
+        'card_line': fields.one2many('designer.sale.line', 'card_id', '物料清单'),
     }
 
+class designer_sale_line(osv.osv):
+    """ 项目工作卡物料管理"""
+    _name = 'designer.sale.line'
+    _inherit = ['mail.thread']
+    _columns = {
+        'card_id': fields.many2one('sale.order', '工作卡', ondelete='cascade', select=True),
+        'line_no': fields.char('编号', required=True,change_default=True, select=True, track_visibility='always'),
+        'project_request': fields.text('项目要求', size=64, required=True, change_default=True, select=True, track_visibility='always'),
+        'number': fields.integer('数量', required=True, change_default=True, select=True, track_visibility='always'),
+        'price': fields.float('价格',digits_compute= dp.get_precision('Price'), required=True, change_default=True, select=True, track_visibility='always'),
+        'subprice': fields.float('总价', required=True, change_default=True, select=True, track_visibility='always'),
+        'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
+    }
+    _sql_constraints = [
+        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+    ]
+    _defaults = {
+    }
+    _order = 'line_no asc'

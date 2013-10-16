@@ -1,63 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--发票-->
-        <record model="ir.ui.view" id="designer_view_account_invoice_form">
-            <field name="name">account.invoice.form</field>
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.invoice_form" />
+        <!--合同   继承视图-->
+        <!-- Inherited Analytic Account form for contracts -->
+        <record id="designer_account_analytic_account_form_form" model="ir.ui.view">
+            <field name="name">account.analytic.account.invoice.form.designer</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <!--<field eval="30" name="priority"/>-->
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='type']" position="before">
+                <xpath expr='//field[@name="name"]' position="after" version="7.0">
+                    <group>
+                        <field name="contract_type"/>
+                        <field name="contract_amount"/>
+                    </group>
                     <group>
                         <field name="project_ids"/>
-                        <field name="invoice_head"/>
-                        <field name="invoice_amount"/>
-                        <field name="state_apply"/>
-                        <field name="state_make_out"/>
-                        <field name="state_draw"/>
-                        <field name="state_arrive"/>
+                        <field name="contract_amount_big"/>
                     </group>
+                    <field name="card_line">
+                        <tree editable="bottom" string="付款方式">
+                            <field name="line_no"/>
+                            <field name="percentage"/>
+                            <field name="price"/>
+                            <field name="note"/>
+                        </tree>
+                    </field>
+
                 </xpath>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="designer_view_account_invoice_tree">
-            <field name="name">account.invoice.tree</field>
-            <field name="model">account.invoice</field>
-            <field name="type">tree</field>
-            <field name="inherit_id" ref="account.invoice_tree" />
+        <!-- Inherited Analytic Account list for contracts -->
+        <record id="designer_view_account_analytic_account_tree_c2c_3" model="ir.ui.view">
+            <field name="name">account.analytic.account.list.designer</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account.view_account_analytic_account_list"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="date_start" position="before">
+                    <field name="contract_type"/>
+                    <field name="contract_amount"/>
                     <field name="project_ids"/>
-                    <field name="invoice_head"/>
-                    <field name="invoice_amount"/>
-                    <field name="state_apply"/>
-                    <field name="state_make_out"/>
-                    <field name="state_draw"/>
-                    <field name="state_arrive"/>
-                </xpath>
+                </field>
             </field>
         </record>
-
-
-        <record model="ir.ui.view" id="designer_view_account_invoice_form">
-            <field name="name">account.invoice.supplier.form</field>
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.invoice_supplier_form" />
+        <!-- 合同  付款方式 -->
+        <record model="ir.ui.view" id="view_designer_contract_rule_form">
+            <field name="name">designer.contract.rule.line.form</field>
+            <field name="model">designer.contract.rule.line</field>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='type']" position="before">
-                    <group>
-                        <field name="project_ids"/>
-                        <field name="invoice_head"/>
-                        <field name="invoice_amount"/>
-                        <field name="state_apply"/>
-                        <field name="state_make_out"/>
-                        <field name="state_draw"/>
-                        <field name="state_arrive"/>
-                    </group>
-                </xpath>
+                <form string="合同付款方式" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="line_no"/>
+                            <field name="percentage"/>
+                            <field name="price"/>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--合同类型 tree-->
+
+        <record model="ir.ui.view" id="view_designer_contract_rule_tree">
+            <field name="name">designer.contract.rule.line.tree</field>
+            <field name="model">designer.contract.rule.line</field>
+            <field name="arch" type="xml">
+            <tree string="合同付款方式">
+                <field name="line_no"/>
+                <field name="percentage"/>
+                <field name="price"/>
+                <field name="note"/>
+            </tree>
             </field>
         </record>
 
@@ -77,7 +92,7 @@
                 </form>
             </field>
         </record>
-        <!--定义品牌 tree-->
+        <!--合同类型 tree-->
 
         <record model="ir.ui.view" id="view_designer_contract_type_tree">
             <field name="name">designer.contract.type.tree</field>

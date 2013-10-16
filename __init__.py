@@ -18,6 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')#中文乱码
 
 import designer        #项目简报
 import designer_brand  #品牌
@@ -29,6 +32,5 @@ import designer_paper   #竟稿申请
 import designer_policy   #创意策略
 import designer_quotation   #创意策略
 import designer_invoice   #发票扩展
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+import designer_contract   #发票合同
+

@@ -28,11 +28,11 @@ class designer_contract_type(osv.osv):
     """ 品牌"""
     _name = 'designer.contract.type'
     _columns = {
-        'name': fields.char('品牌名称', size=64, required=True),
-        'comment': fields.text('备注', help='品牌备注'),
+        'name': fields.char('名称', size=64, required=True),
+        'comment': fields.text('备注', help='备注'),
     }
     _sql_constraints = [
-        ('name', 'unique(name)', 'The name of the idea must be unique')
+        ('name', 'unique(name)', '名称不能重复')
     ]
 
     _order = 'name asc'
@@ -46,7 +46,7 @@ class account_analytic_account(osv.osv):
         'contract_amount': fields.float('合同金额', digits_compute=dp.get_precision('invoice_amount'),required=True),
         'contract_amount_big': fields.char('合同金额大写', required=True),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
-        'card_line': fields.one2many('designer.contract.rule.line', 'card_id', '付款方式', readonly=True),
+        'card_line': fields.one2many('designer.contract.rule.line', 'card_id', '付款方式'),
 
     }
 
@@ -70,7 +70,7 @@ class designer_contract_rule_line(osv.osv):
         ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
-        'line_no': 1,
+     #   'line_no': 1,
     }
     _order = 'line_no asc'
 

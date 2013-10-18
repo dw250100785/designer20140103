@@ -46,6 +46,7 @@ class designer_order(osv.osv):
             '项目类型', track_visibility='onchange',
         )
     }
+    _rec_name = 'order_no'
     _sql_constraints = [
         ('order_no', 'unique(order_no)', 'The name of the idea must be unique')
     ]

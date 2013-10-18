@@ -39,6 +39,7 @@ class designer_paper(osv.osv):
             '状态', readonly=True, track_visibility='onchange',
         ),
     }
+    _rec_name = 'paper_no'
     _sql_constraints = [
         ('paper_no', 'unique(paper_no)', 'The name of the idea must be unique')
     ]

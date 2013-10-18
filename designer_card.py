@@ -41,6 +41,7 @@ class designer_card(osv.osv):
             '状态', readonly=True, track_visibility='onchange',
         )
     }
+    _rec_name = 'card_no'
     _sql_constraints = [
         ('card_no', 'unique(card_no)', 'The name of the idea must be unique')
     ]

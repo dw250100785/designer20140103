@@ -45,6 +45,8 @@ class designer_archive(osv.osv):
             '状态', readonly=True, track_visibility='onchange',
         )
     }
+
+    _rec_name = 'archive_no'
     _sql_constraints = [
         ('archive_no', 'unique(archive_no)', 'The name of the idea must be unique')
     ]

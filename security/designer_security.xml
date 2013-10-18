@@ -11,6 +11,8 @@
         总经理  group_designer_manager
 
         2.如何针对分组进行分层？？
+        业务员
+        总监
         implied_ids
 
 
@@ -19,45 +21,150 @@
     <record id="base.group_user"    model="res.groups" >
         <field name="comment">the user will be able to manage his own human resources stuff (leave request, timesheets, ...), if he is linked to an employee in the system.</field>
     </record>
+
+    <record model="ir.module.category" id="module_category_designer_wuhan">
+            <field name="name">武汉德客天工</field>
+            <field name="description">武汉德客天工.</field>
+            <field name="sequence">22</field>
+    </record>
+
 <!--有层级的分组-->
+    <!--客户部-->
+    <record id="base.group_designer_customer" model="res.groups">
+        <field name="name">客户部</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">客户部</field>
+    </record>
+    <record id="base.group_designer_customer_manager" model="res.groups">
+        <field name="name">客户部总监</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">客户部总监</field>
+    </record>
+    <record id="base.group_designer_customer_ae" model="res.groups">
+        <field name="name">客户部业务员</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">客户部业务员</field>
+    </record>
+
+<!--创意部-->
     <record id="base.group_designer_idea" model="res.groups">
         <field name="name">创意部</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="comment">创意部</field>
     </record>
+    <record id="base.group_designer_idea_manager" model="res.groups">
+        <field name="name">创意部总监</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">创意部总监</field>
+    </record>
+    <record id="base.group_designer_idea_ae" model="res.groups">
+        <field name="name">创意部业务员</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">创意部业务员</field>
+    </record>
+
+<!--设计部-->
     <record id="base.group_designer_design" model="res.groups">
         <field name="name">设计部</field>
         <field name="comment">设计部</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
+    <record id="base.group_designer_design_manager" model="res.groups">
+        <field name="name">设计部总监</field>
+        <field name="comment">设计部总监</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    <record id="base.group_designer_design_ae" model="res.groups">
+        <field name="name">设计部业务员</field>
+        <field name="comment">设计部业务员</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+<!--行政部-->
     <record id="base.group_designer_office" model="res.groups">
         <field name="name">行政部</field>
         <field name="comment">行政部</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
+    <record id="base.group_designer_office_manager" model="res.groups">
+        <field name="name">行政部总监</field>
+        <field name="comment">行政部总监</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    <record id="base.group_designer_office_ae" model="res.groups">
+        <field name="name">行政部业务员</field>
+        <field name="comment">行政部业务员</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+<!--制作部-->
+
     <record id="base.group_designer_make" model="res.groups">
         <field name="name">制作部</field>
         <field name="comment">制作部</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
+    <record id="base.group_designer_make_manager" model="res.groups">
+        <field name="name">制作部总监</field>
+        <field name="comment">制作部总监</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    <record id="base.group_designer_make_ae" model="res.groups">
+        <field name="name">制作部业务员</field>
+        <field name="comment">制作部业务员</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+<!--财务部-->
     <record id="base.group_designer_finance" model="res.groups">
         <field name="name">财务部</field>
         <field name="comment">财务部</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
+    <record id="base.group_designer_finance_manager" model="res.groups">
+        <field name="name">财务部总监</field>
+        <field name="comment">财务部总监</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+    <record id="base.group_designer_finance_ae" model="res.groups">
+        <field name="name">财务部业务员</field>
+        <field name="comment">财务部业务员</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+<!--总经理-->
+
     <record id="base.group_designer_manager" model="res.groups">
         <field name="name">总经理</field>
         <field name="comment">总经理</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>

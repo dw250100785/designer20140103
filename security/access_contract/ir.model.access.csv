@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+chief_inspector1,idea_chief_inspector1,model_designer_project,base.group_designer_idea,1,0,0,0
+account_executive2,idea_account_executive2,model_designer_project,base.group_designer_idea,1,1,1,1
+chief_inspector3,design_chief_inspector3,model_designer_project,base.group_designer_design,1,0,0,0
+account_executive4,design_account_executive4,model_designer_project,base.group_designer_design,1,1,1,1
+chief_inspector5,office_chief_inspector5,model_designer_project,base.group_designer_office,1,0,0,0
+account_executive6,office_account_executive6,model_designer_project,base.group_designer_office,1,1,1,1
+chief_inspector7,make_chief_inspector7,model_designer_project,base.group_designer_make,1,0,0,0
+account_executive8,make_account_executive8,model_designer_project,base.group_designer_make,1,1,1,1
+chief_inspector9,finance_chief_inspector9,model_designer_project,base.group_designer_finance,1,0,0,0
+account_executive10,finance_account_executive10,model_designer_project,base.group_designer_finance,1,1,1,1
+chief_inspector11,manager_chief_inspector11,model_designer_project,base.group_designer_manager,1,0,0,0

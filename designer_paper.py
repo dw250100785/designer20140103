@@ -50,14 +50,14 @@ class designer_paper(osv.osv):
         'state': lambda *a: 'draft',
     }
 
-    def designer_project_cancel(self, cr, uid, ids, context=None):
+    def designer_paper_cancel(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
-    def designer_project_open(self, cr, uid, ids, context={}):
+    def designer_paper_open(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_project_close(self, cr, uid, ids, context={}):
+    def designer_paper_close(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'close'}, context=context)
 
-    def designer_project_draft(self, cr, uid, ids, context={}):
+    def designer_paper_draft(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)

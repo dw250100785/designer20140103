@@ -50,16 +50,16 @@ class designer_card(osv.osv):
     }
     _order = 'card_no asc'
 
-    def designer_idea_cancel(self, cr, uid, ids, context=None):
+    def designer_card_cancel(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
-    def designer_idea_open(self, cr, uid, ids, context={}):
+    def designer_card_open(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_idea_close(self, cr, uid, ids, context={}):
+    def designer_card_close(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'close'}, context=context)
 
-    def designer_idea_draft(self, cr, uid, ids, context={}):
+    def designer_card_draft(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
 
 

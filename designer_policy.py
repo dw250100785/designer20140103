@@ -51,16 +51,16 @@ class designer_policy(osv.osv):
         'state': lambda *a: 'draft',
     }
 
-    def designer_project_cancel(self, cr, uid, ids, context=None):
+    def designer_policy_cancel(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
-    def designer_project_open(self, cr, uid, ids, context={}):
+    def designer_policy_open(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_project_close(self, cr, uid, ids, context={}):
+    def designer_policy_close(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'close'}, context=context)
 
-    def designer_project_draft(self, cr, uid, ids, context={}):
+    def designer_policy_draft(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
 class designer_policy_line(osv.osv):
     """ 创意策略"""

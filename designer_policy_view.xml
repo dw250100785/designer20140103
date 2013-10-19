@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <form string="创意策略" version="7.0">
                     <header>
-                        <button name="designer_project_open" string="开启" states="draft" class="oe_highlight"/>
-                        <button name="designer_project_close" string="批准" states="open" class="oe_highlight"/>
-                        <button name="designer_project_cancel" string="拒绝" states="open"  class="oe_highlight"/>
+                        <button name="designer_policy_open" string="开启" states="draft" class="oe_highlight"/>
+                        <button name="designer_policy_close" string="批准" states="open" class="oe_highlight"/>
+                        <button name="designer_policy_cancel" string="拒绝" states="open"  class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                     </header>
                     <sheet>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- Sequences for purchase.order --> 
+        <record id="seq_type_designer_inquiry" model="ir.sequence.type">
+            <field name="name">designer inquiry</field>
+            <field name="code">designer.inquiry</field>
+        </record>
+        <record id="seq_designer_inquiry" model="ir.sequence">
+            <field name="name">designer inquiry</field>
+            <field name="code">designer.inquiry</field>
+            <field name="prefix">PO</field>
+            <field name="padding">5</field>
+        </record>
+
+
+        <!-- Sequences for 报价单 -->
+        <record id="seq_type_designer_offer" model="ir.sequence.type">
+            <field name="name">designer offer</field>
+            <field name="code">designer.offer</field>
+        </record>
+        <record id="seq_designer_offer" model="ir.sequence">
+            <field name="name">designer offer</field>
+            <field name="code">designer.offer</field>
+            <field name="prefix">PO</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</openerp>

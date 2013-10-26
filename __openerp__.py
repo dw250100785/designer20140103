@@ -57,6 +57,8 @@ mail
         'designer_contract_view.xml',
         'designer_inquiry_view.xml',
         'designer_offer_view.xml',
+        'designer_bill_view.xml',
+        'designer_agreement_view.xml',
         'designer_user.xml',
         'designer_sequence.xml',
         'security/designer_security.xml',

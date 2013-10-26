@@ -43,7 +43,7 @@ class designer_inquiry(osv.osv):
             '状态', readonly=True, track_visibility='onchange',
         )
     }
-    _description = "内部询价单，针对外包商"
+
     _rec_name = 'name'
     _sql_constraints = [
 

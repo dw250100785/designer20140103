@@ -35,4 +35,6 @@ import designer_invoice   #发票扩展
 import designer_contract   #发票合同
 import designer_inquiry   #询价单
 import designer_offer   #报价单
+import designer_bill   #发票
+import designer_agreement   #合同
 

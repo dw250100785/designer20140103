@@ -43,7 +43,7 @@ class designer_offer(osv.osv):
             '状态', readonly=True, track_visibility='onchange',
         )
     }
-    _description = "报价单，针对客户"
+
     _rec_name = 'name'
     _sql_constraints = [
     ]

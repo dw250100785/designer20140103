@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form string="竟稿申请" version="7.0">
                     <header>
-                        <button name="designer_paper_open" string="开启" states="draft" class="oe_highlight"/>
+                        <button name="designer_paper_open" string="提交" states="draft" class="oe_highlight"/>
                         <button name="designer_paper_close" string="批准" states="open" class="oe_highlight"/>
                         <button name="designer_paper_cancel" string="拒绝" states="open"  class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>

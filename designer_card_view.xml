@@ -94,5 +94,17 @@
             </tree>
             </field>
         </record>
+        <!--设置自增id-->
+        <!-- Sequences for  -->
+        <record id="seq_type_designer_card_line" model="ir.sequence.type">
+            <field name="name">designer card line</field>
+            <field name="code">designer.card.line</field>
+        </record>
+        <record id="seq_designer_card_line" model="ir.sequence">
+            <field name="name">designer card line</field>
+            <field name="code">designer.card.line</field>
+            <field name="prefix"></field>
+            <field name="padding">0</field><!--自然数自增-->
+        </record>
     </data>
 </openerp>

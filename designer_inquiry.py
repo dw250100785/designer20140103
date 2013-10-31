@@ -86,6 +86,9 @@ class designer_inquiry_line(osv.osv):
     """ 项目工作卡物料管理"""
     _name = 'designer.inquiry.line'
     _inherit = ['mail.thread']
+    def _get_seq(self, cr, uid, ids, context=None):
+        return self.pool.get('ir.sequence').get(cr, uid, 'designer.inquiry.line')
+
     _columns = {
         'card_id': fields.many2one('designer.inquiry', '工作卡', ondelete='cascade', select=True),
         'line_no': fields.char('编号', required=True,change_default=True, select=True, track_visibility='always'),
@@ -96,8 +99,8 @@ class designer_inquiry_line(osv.osv):
         'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
+        'line_no':_get_seq
     }
     _order = 'line_no asc'

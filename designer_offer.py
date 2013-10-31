@@ -85,6 +85,10 @@ class designer_offer_line(osv.osv):
     """ 项目工作卡物料管理"""
     _name = 'designer.offer.line'
     _inherit = ['mail.thread']
+
+    def _get_seq(self, cr, uid, ids, context=None):
+        return self.pool.get('ir.sequence').get(cr, uid, 'designer.offer.line')
+
     _columns = {
         'card_id': fields.many2one('designer.offer', '工作卡', ondelete='cascade', select=True),
         'line_no': fields.char('编号', required=True,change_default=True, select=True, track_visibility='always'),
@@ -98,5 +102,6 @@ class designer_offer_line(osv.osv):
         ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
+        'line_no':_get_seq
     }
     _order = 'line_no asc'

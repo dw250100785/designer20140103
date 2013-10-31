@@ -106,7 +106,18 @@
                 </record>
                 <menuitem id="designer_offer" name = "定制的报价单"  action="action_designer_offer" parent="base.menu_base_designer_price_report_5" sequence="2"/>
 
-
+         <!--设置自增id-->
+        <!-- Sequences for  -->
+        <record id="seq_type_designer_offer_line" model="ir.sequence.type">
+            <field name="name">designer offer line</field>
+            <field name="code">designer.offer.line</field>
+        </record>
+        <record id="seq_designer_offer_line" model="ir.sequence">
+            <field name="name">designer offer line</field>
+            <field name="code">designer.offer.line</field>
+            <field name="prefix"></field>
+            <field name="padding">0</field><!--自然数自增-->
+        </record>
     </data>
 </openerp>
 

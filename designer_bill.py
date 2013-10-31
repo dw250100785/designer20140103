@@ -29,6 +29,7 @@ class designer_bill(osv.osv):
     """ 发票管理"""
     _name = "designer.bill"
     _inherit = ['mail.thread']
+
     _columns = {
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
@@ -57,6 +58,7 @@ class designer_bill(osv.osv):
         )
 
     }
+    _rec_name = 'invoice_head'
 
     _order = 'partner_id asc'
 

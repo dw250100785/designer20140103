@@ -107,6 +107,19 @@
         <menuitem action="action_designer_inquiry" name = "定制的询价单" id="designer_inquiry" parent="base.menu_base_designer_ask_price_4" sequence="2"/>
 
 
+
+        <!--设置自增id-->
+        <!-- Sequences for  -->
+        <record id="seq_type_designer_inquiry_line" model="ir.sequence.type">
+            <field name="name">designer inquiry line</field>
+            <field name="code">designer.inquiry.line</field>
+        </record>
+        <record id="seq_designer_inquiry_line" model="ir.sequence">
+            <field name="name">designer inquiry line</field>
+            <field name="code">designer.inquiry.line</field>
+            <field name="prefix"></field>
+            <field name="padding">0</field><!--自然数自增-->
+        </record>
     </data>
 </openerp>
 

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+offer_group_designer_customer_ae,offer_group_designer_customer_ae,model_designer_offer,group_designer_customer_ae,1,1,1,1
+offer_group_designer_customer_manager,offer_group_designer_customer_manager,model_designer_offer,group_designer_customer_manager,1,0,0,0

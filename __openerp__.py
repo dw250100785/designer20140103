@@ -62,7 +62,7 @@ mail
         'designer_user.xml',
         'designer_sequence.xml',
         'security/designer_security.xml',
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'workflow/designer_workflow.xml',
         'workflow/designer_idea_workflow.xml',
         'workflow/designer_order_workflow.xml',

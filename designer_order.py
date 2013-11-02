@@ -30,6 +30,10 @@ class designer_order(osv.osv):
     """ 项目工作卡"""
     _name = 'designer.order'
     _inherit = ['mail.thread']
+
+    def _get_seq(self, cr, uid, ids, context=None):
+        return self.pool.get('ir.sequence').get(cr, uid, 'designer.order')
+
     _columns = {
         'order_no': fields.char('工单编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'order_line': fields.one2many('designer.order.line', 'order_id', '制作明细', readonly=True, states={'draft':[('readonly',False)]}),
@@ -48,10 +52,11 @@ class designer_order(osv.osv):
     }
     _rec_name = 'order_no'
     _sql_constraints = [
-        ('order_no', 'unique(order_no)', 'The name of the idea must be unique')
+        ('order_no', 'unique(order_no)', u'工单编号必须唯一')
     ]
     _defaults = {
         'state': lambda *a: 'draft',
+        'order_no':_get_seq
     }
     _order = 'order_no asc'
 

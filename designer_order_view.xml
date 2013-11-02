@@ -115,5 +115,18 @@
             </tree>
             </field>
         </record>
+
+        <!--工单编号-->
+        <record id="seq_type_designer_order" model="ir.sequence.type">
+            <field name="name">designer order</field>
+            <field name="code">designer.order</field>
+        </record>
+        <record id="seq_designer_order" model="ir.sequence">
+            <field name="name">designer order</field>
+            <field name="code">designer.order</field>
+            <field name="prefix">GD</field>
+            <field name="padding">0</field>
+        </record>
+
     </data>
 </openerp>

@@ -18,8 +18,15 @@
                         <h1><field name="project_id"/></h1>
                         <label for="card_no"/>
                         <h1><field name="card_no"/></h1>
-
-                        <field name="card_line">
+                        <!--<div class="oe_right oe_button_box">
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_log_contract_act'}" string="Contracts" help="show the contract for this vehicle" />
+                            <button name="act_show_log_cost" type="object" string="Costs" help="show all the costs for this vehicle" />
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_log_services_act'}" string="Services" help="show the services logs for this vehicle" />
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_log_fuel_act'}" string="Fuel Logs" help="show the fuel logs for this vehicle" />
+                            <button name="return_action_to_open" type="object" context="{'xml_id':'fleet_vehicle_odometer_act'}" string="Odometer Logs" help="show the odometer logs for this vehicle" />
+                        </div>-->
+                        <group>
+                            <field name="card_line">
                                 <tree editable="bottom" string="物料清单">
                                     <field name="line_no"/>
                                     <field name="project_request"/>
@@ -28,7 +35,8 @@
                                     <field name="subprice"/>
                                     <field name="note"/>
                                 </tree>
-                        </field>
+                            </field>
+                        </group>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>

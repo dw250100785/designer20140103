@@ -49,10 +49,16 @@ class designer_idea(osv.osv):
         #'receiver_uid':fields.many2one('res.users','我方对接人', required=True, readonly=True ,states={'draft': [('readonly', False)]}),
         'project_ids': fields.many2one('project.project', string='项目', readonly=True, states={'draft': [('readonly', False)]}),
         'state': fields.selection([('draft', '草稿中'),
-            ('open', '已批准'),
+            ('open', '已提交'),
+            ('confirmed', '已审核'),
+            ('verify1', '确认(1)通过'),
+            ('verify2', '确认(2)通过'),
             ('cancel', '已拒绝'),
-            ('close', '已完成')],
+            ('done', '已完成')],
             '状态', readonly=True, track_visibility='onchange',
+            help='总监审核，并创建提案ppt.\
+            \nae第一次确认并给客户签字.\
+            \n 第二次确认完稿时间.'
         )
     }
     _sql_constraints = [
@@ -63,14 +69,22 @@ class designer_idea(osv.osv):
     }
     _order = 'name asc'
 
-    def designer_idea_cancel(self, cr, uid, ids, context=None):
-        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+    def designer_idea_draft(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
 
-    def designer_idea_open(self, cr, uid, ids, context={}):
+    def designer_idea_submit(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_idea_close(self, cr, uid, ids, context={}):
-        return self.write(cr, uid, ids, {'state': 'close'}, context=context)
+    def designer_idea_confirmed(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'confirmed'}, context=context)
 
-    def designer_idea_draft(self, cr, uid, ids, context={}):
-        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+    def designer_idea_verify1(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify1'}, context=context)
+
+    def designer_idea_verify2(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'done'}, context=context)
+
+    def designer_idea_cancel(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+
+

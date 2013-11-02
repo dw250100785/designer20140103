@@ -8,10 +8,12 @@
             <field name="arch" type="xml">
                 <form string="创意简报" version="7.0">
                     <header>
-                        <button name="designer_idea_open" string="开启" states="draft" class="oe_highlight"/>
-                        <button name="designer_idea_close" string="批准" states="open" class="oe_highlight"/>
-                        <button name="designer_idea_cancel" string="拒绝" states="open"  class="oe_highlight"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                        <button name="designer_idea_submit" string="提交" states="draft" class="oe_highlight"/>
+                        <button name="designer_idea_confirmed" string="总监审核" states="open" class="oe_highlight"/>
+                        <button name="designer_idea_verify1" string="确认(1)" states="confirmed" class="oe_highlight"/>
+                        <button name="designer_idea_verify2" string="确认(2)" states="verify1" class="oe_highlight"/>
+                        <button name="designer_idea_cancel" string="拒绝" states="open,verify1,confirmed"  class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,confirmed,verify1,cancel,done"/>
                     </header>
                     <sheet>
                         <label for="name"/>
@@ -59,7 +61,7 @@
             <field name="name">designer.idea.tree</field>
             <field name="model">designer.idea</field>
             <field name="arch" type="xml">
-            <tree colors="blue:state == 'draft';black:state in ('open','close');gray:state == 'cancel'" string="创意简报">
+            <tree colors="blue:state == 'draft';pink:state == 'open';black:state =='done';red:state == 'confirmed';green:state == 'verify1';gray:state == 'cancel'" string="创意简报">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="brand_id"/>

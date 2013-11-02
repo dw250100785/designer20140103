@@ -10,7 +10,7 @@
             <field name="name">kehubu_ae</field>
             <field name="password">19870902</field>
             <field name="signature">--demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_customer_ae')])]"/>
         </record>
         <record id="user_designer_kehubu_manager" model="res.users">
@@ -18,7 +18,7 @@
             <field name="name">kehubu_manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_customer_manager')])]"/>
         </record>
 <!--创意部-->
@@ -27,7 +27,7 @@
             <field name="name">chuangyi_ae</field>
             <field name="password">19870902</field>
             <field name="signature">--demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_idea_ae')])]"/>
         </record>
         <record id="user_designer_chuangyi_manager" model="res.users">
@@ -35,7 +35,7 @@
             <field name="name">chuangyi_manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_idea_manager')])]"/>
         </record>
 <!--设计部-->
@@ -44,7 +44,7 @@
             <field name="name">sheji_ae</field>
             <field name="password">19870902</field>
             <field name="signature">--demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_design_ae')])]"/>
         </record>
         <record id="user_designer_sheji_manager" model="res.users">
@@ -52,7 +52,7 @@
             <field name="name">sheji_manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_design_manager')])]"/>
         </record>
 <!--行政部-->
@@ -61,7 +61,7 @@
             <field name="name">xingzheng_ae</field>
             <field name="password">19870902</field>
             <field name="signature">--demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_office_ae')])]"/>
         </record>
         <record id="user_designer_xingzheng_manager" model="res.users">
@@ -69,7 +69,7 @@
             <field name="name">xingzheng_manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_office_manager')])]"/>
         </record>
 <!--制作部-->
@@ -86,7 +86,7 @@
             <field name="name">zhizuo_manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_make_manager')])]"/>
         </record>
 <!--财务部-->
@@ -96,7 +96,7 @@
             <field name="name">caiwu_ae</field>
             <field name="password">19870902</field>
             <field name="signature">--demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_finance_ae')])]"/>
         </record>
         <record id="user_designer_caiwu_manager" model="res.users">
@@ -104,7 +104,7 @@
             <field name="name">caiwu_manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_finance_manager')])]"/>
         </record>
 <!--总经理-->
@@ -113,7 +113,7 @@
             <field name="name">manager</field>
             <field name="password">19870902</field>
             <field name="signature">--Demo</field>
-            <field name="company_id" ref="main_company"/>
+            <!--<field name="company_id" ref="main_company"/>-->
             <field name="groups_id" eval="[(6,0,[ref('group_designer_manager')])]"/>
         </record>
     </data>

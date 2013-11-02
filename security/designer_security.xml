@@ -13,8 +13,16 @@
 
     <record model="ir.module.category" id="module_category_designer_wuhan">
             <field name="name">武汉德客天工</field>
-            <field name="description">武汉德客天工.</field>
+            <field name="description">武汉德客天工</field>
             <field name="sequence">1</field>
+    </record>
+
+    <!--通用权限组-->
+    <record id="group_designer_base_user" model="res.groups">
+        <field name="name">武汉德客天工员工通用组</field>
+        <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">所有员工均拥有通用组</field>
     </record>
 
 <!--有层级的分组-->
@@ -22,6 +30,7 @@
     <record id="group_designer_customer" model="res.groups">
         <field name="name">客户部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
         <field name="comment">客户部</field>
     </record>
     <record id="group_designer_customer_manager" model="res.groups">
@@ -41,6 +50,7 @@
     <record id="group_designer_idea" model="res.groups">
         <field name="name">创意部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
         <field name="comment">创意部</field>
     </record>
     <record id="group_designer_idea_manager" model="res.groups">
@@ -62,6 +72,7 @@
         <field name="comment">设计部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
     </record>
     <record id="group_designer_design_manager" model="res.groups">
         <field name="name">设计部总监</field>
@@ -84,6 +95,7 @@
         <field name="comment">行政部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
     </record>
     <record id="group_designer_office_manager" model="res.groups">
         <field name="name">行政部总监</field>
@@ -106,6 +118,7 @@
         <field name="comment">制作部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
     </record>
     <record id="group_designer_make_manager" model="res.groups">
         <field name="name">制作部总监</field>
@@ -127,6 +140,7 @@
         <field name="comment">财务部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
     </record>
     <record id="group_designer_finance_manager" model="res.groups">
         <field name="name">财务部总监</field>
@@ -143,12 +157,13 @@
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
 <!--总经理-->
-
+<!--权限范围：所有对象都可以查看-->
     <record id="group_designer_manager" model="res.groups">
         <field name="name">总经理</field>
         <field name="comment">总经理</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_base_user'))]"/>
     </record>
 </data>
 </openerp>

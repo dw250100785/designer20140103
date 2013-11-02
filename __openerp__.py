@@ -23,15 +23,54 @@
 {
     'name': 'Designer for Wuhan',
     'version': '0.1',
-    'category': 'Tools',
-    'description': """
+    'category': 'Other',
+    'sequence': 300,
+    'summary': '武汉设计师广告行业管理软件',
+    'maintainer': '250100785@qq.com',
+    'description': u"""
 武汉设计师广告行业管理软件
 ========================
+
+        系统要求：
+            openerp7.0
+        功能:
+        1. 接受淘宝主动通知，自动添加、确认订单、发货等。
+        2. 同步淘宝订单
+        3. 导入淘宝产品, 同步库存
+        4. 导入淘宝用户
+        5. 自动评价，中差评预警
+        6. 跟踪淘宝订单物流信息, 签收提醒
+        7. ......
 """,
     'author': 'Evebit',
     'website': 'http://evebit.com',
-    'depends': ['mail','base','idea','project','account_analytic_analysis','project_issue','crm','sale','hr','account','document','purchase',],
+    'depends': [
+        'mail',
+        'base',
+        'idea',
+        'project',
+        'account_analytic_analysis',
+        'project_issue',
+        'crm',
+        'sale',
+        'hr',
+        'account',
+        'document',
+        'purchase',
+        ],
     'data': [
+        'security/designer_security.xml',
+        'security/access_agreement/ir.model.access.csv',
+        'security/access_archive/ir.model.access.csv',
+        'security/access_bill/ir.model.access.csv',
+        'security/access_card/ir.model.access.csv',
+        'security/access_idea/ir.model.access.csv',
+        'security/access_inquiry/ir.model.access.csv',
+        'security/access_offer/ir.model.access.csv',
+        'security/access_order/ir.model.access.csv',
+        'security/access_paper/ir.model.access.csv',
+        'security/access_policy/ir.model.access.csv',
+        'security/access_project/ir.model.access.csv',
         'base_menu.xml',
         'designer_project_view.xml',
         'designer_brand_view.xml',
@@ -50,18 +89,6 @@
         'designer_agreement_view.xml',
         'designer_user.xml',
         'designer_sequence.xml',
-        'security/designer_security.xml',
-        'security/access_agreement/ir.model.access.csv',
-        'security/access_archive/ir.model.access.csv',
-        'security/access_bill/ir.model.access.csv',
-        'security/access_card/ir.model.access.csv',
-        'security/access_idea/ir.model.access.csv',
-        'security/access_inquiry/ir.model.access.csv',
-        'security/access_offer/ir.model.access.csv',
-        'security/access_order/ir.model.access.csv',
-        'security/access_paper/ir.model.access.csv',
-        'security/access_policy/ir.model.access.csv',
-        'security/access_project/ir.model.access.csv',
         'workflow/designer_workflow.xml',
         'workflow/designer_idea_workflow.xml',
         'workflow/designer_order_workflow.xml',
@@ -69,8 +96,17 @@
         'workflow/designer_policy_workflow.xml',
         'workflow/designer_card_workflow.xml',
     ],
+    'js': [],
+    'css': [],
+    'qweb': [],
+    'demo': [],
     'test':[],
+    'application': False,
     'installable': True,
+    'auto_install': False,
     'images': [],
+    'certificate' : '001292377792581874189',
+    "license": "GPL-3",
+    "active": False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

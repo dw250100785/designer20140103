@@ -27,17 +27,6 @@
     'description': """
 武汉设计师广告行业管理软件
 ========================
-1.重用addons
-创意
-项目
-合同
-发票
-base
-mail
-2.全部模块  新建的对象【表】
-工作卡   designer.card
-
-
 """,
     'author': 'Evebit',
     'website': 'http://evebit.com',
@@ -52,9 +41,9 @@ mail
         'designer_order_view.xml',
         'designer_paper_view.xml',
         'designer_policy_view.xml',
-        'designer_quotation_view.xml',
-        'designer_invoice_view.xml',
-        'designer_contract_view.xml',
+        #'designer_quotation_view.xml',
+        #'designer_invoice_view.xml',
+        #'designer_contract_view.xml',
         'designer_inquiry_view.xml',
         'designer_offer_view.xml',
         'designer_bill_view.xml',

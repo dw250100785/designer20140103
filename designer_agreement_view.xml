@@ -140,7 +140,7 @@
                         </p>
                     </field>
                 </record>
-                <menuitem action="action_designer_agreement" name = "合同2" id="designer_action_agreement_menu" sequence="3" parent="base.menu_base_designer_contract_6"/>
+                <menuitem action="action_designer_agreement" name = "合同" id="designer_action_agreement_menu" sequence="0" parent="base.menu_base_designer_contract_6"/>
                 <!--报价单 ssales.order-->
     </data>
 </openerp>

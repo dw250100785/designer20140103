@@ -104,7 +104,7 @@
                       </p>
                     </field>
                 </record>
-                <menuitem id="designer_offer" name = "定制的报价单"  action="action_designer_offer" parent="base.menu_base_designer_price_report_5" sequence="2"/>
+                <menuitem id="designer_offer" name = "报价单"  action="action_designer_offer" parent="base.menu_base_designer_price_report_5" sequence="0"/>
 
          <!--设置自增id-->
         <!-- Sequences for  -->

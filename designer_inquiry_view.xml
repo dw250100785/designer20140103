@@ -104,7 +104,7 @@
                       </p>
                     </field>
                 </record>
-        <menuitem action="action_designer_inquiry" name = "定制的询价单" id="designer_inquiry" parent="base.menu_base_designer_ask_price_4" sequence="2"/>
+        <menuitem action="action_designer_inquiry" name = "询价单" id="designer_inquiry" parent="base.menu_base_designer_ask_price_4" sequence="0"/>
 
 
 

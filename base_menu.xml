@@ -18,18 +18,6 @@
             <menuitem id="base.menu_base_designer_project_pool_12" name="项目备档单" parent="base.menu_base_designer" sequence="10"/>
             <menuitem id="base.menu_base_designer_partner_13" name="客户管理" parent="base.menu_base_designer" sequence="11"/>
             <menuitem id="base.menu_base_designer_attachment_14" name="附件管理" parent="base.menu_base_designer" sequence="12"/>
-
-        <!--绑定 action的 菜单-->
-        <!--技巧就是 一级 二级 顶级 menu  都是 base并没有绑定action-->
-                <record model="ir.actions.act_window" id="action_idea_idea">
-                    <field name="name">创意</field>
-                    <field name="res_model">idea.idea</field>
-                    <field name="view_type">form</field>
-                    <field name="view_mode">tree,form</field>
-                    <field name="search_view_id" ref="idea.view_idea_idea_search"/>
-                </record>
-                <menuitem name="创意简报" parent="base.menu_base_designer_idea_report_3" id="menu_designer_idea_report" action="action_idea_idea" sequence="1"/>
-
                 <!--重用项目-->
 
 
@@ -55,9 +43,9 @@
                               projects or invite customers to share your activities.
                             </p>
                         </field>
-                    </record>
+                </record>
 
-                <!--<menuitem action="open_view_project_all" id="designer_project_projects_report" name="项目简报" parent="base.menu_base_designer_project_report_2" sequence="1"/>-->
+
                 <menuitem action="open_view_project_all" id="designer_project_projects" name="项目管理" parent="base.menu_base_designer_project_process_10" sequence="1"/>
 
                 <record id="action_attachment" model="ir.actions.act_window">
@@ -121,107 +109,6 @@
                 </record>
 
                 <menuitem id="designer_partner_form" name = "客户" parent="base.menu_base_designer_partner_13" action="action_partner_form" sequence="1"/>
-
-
-                <!--发票-->
-                <record id="action_invoice_tree1" model="ir.actions.act_window">
-                    <field name="name">客户发票</field>
-                    <field name="res_model">account.invoice</field>
-                    <field name="view_type">form</field>
-                    <field name="view_mode">tree,form,calendar,graph</field>
-                    <!--<field eval="False" name="view_id"/>-->
-                    <!--<field name="domain">[('type','=','out_invoice')]</field>-->
-                    <!--<field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale'}</field>-->
-                    <!--<field name="search_view_id" ref="view_account_invoice_filter"/>-->
-                    <field name="help" type="html">
-                      <p class="oe_view_nocontent_create">
-                        Click to create a customer invoice.
-                      </p><p>
-                        OpenERP's electronic invoicing allows to ease and fasten the
-                        collection of customer payments. Your customer receives the
-                        invoice by email and he can pay online and/or import it
-                        in his own system.
-                      </p><p>
-                        The discussions with your customer are automatically displayed at
-                        the bottom of each invoice.
-                      </p>
-                    </field>
-                </record>
-
-                <menuitem action="action_invoice_tree1" id="designer_action_invoice_tree1" name = "发票" parent="base.menu_base_designer_invoce_7"/>
-    <!--设置重用部分链接 比如 项目  合同 发票 创意-->
-                <!--合同-->
-                <!-- Action Sales/Sales/Contracts -->
-                <record id="action_account_analytic_overdue_all" model="ir.actions.act_window">
-                    <field name="name">合同</field>
-                    <field name="res_model">account.analytic.account</field>
-                    <field name="view_type">form</field>
-                    <field name="view_mode">tree,form</field>
-                    <field name="context">{'default_type':'contract', 'search_default_open':1, 'search_default_pending':1, 'default_manager_id':uid}</field>
-                    <field name="domain">[('type','=','contract')]</field>
-                    <!--<field name="search_view_id" ref="view_account_analytic_account_overdue_search"/>-->
-                    <field name="help" type="html">
-                        <p class="oe_view_nocontent_create">
-                            Click to create a new contract.
-                        </p><p>
-                            Use contracts to follow tasks, issues, timesheets or invoicing based on
-                            work done, expenses and/or sales orders. OpenERP will automatically manage
-                            the alerts for the renewal of the contracts to the right salesperson.
-                        </p>
-                    </field>
-                </record>
-                <menuitem action="action_account_analytic_overdue_all" name = "合同" id="designer_action_account_analytic_overdue_all" sequence="1" parent="base.menu_base_designer_contract_6"/>
-                <!--报价单 ssales.order-->
-                <record id="action_quotations" model="ir.actions.act_window">
-                    <field name="name">报价单</field>
-                    <field name="type">ir.actions.act_window</field>
-                    <field name="res_model">sale.order</field>
-                    <field name="view_type">form</field>
-                    <!--<field name="view_id" ref="sale.order.view_quotation_tree"/>-->
-                    <field name="view_mode">tree,form,calendar,graph</field>
-                    <field name="context">{}</field>
-                    <field name="domain">[('state','in',('draft','sent','cancel'))]</field>
-                    <!--<field name="search_view_id" ref="view_sales_order_filter"/>-->
-                    <field name="help" type="html">
-                      <p class="oe_view_nocontent_create">
-                        Click to create a quotation, the first step of a new sale.
-                      </p><p>
-                        OpenERP will help you handle efficiently the complete sale flow:
-                        from the quotation to the sales order, the
-                        delivery, the invoicing and the payment collection.
-                      </p><p>
-                        The social feature helps you organize discussions on each sales
-                        order, and allow your customers to keep track of the evolution
-                        of the sales order.
-                      </p>
-                    </field>
-                </record>
-
-                <menuitem id="designer_sale_quotations" name = "报价单"  action="action_quotations" parent="base.menu_base_designer_price_report_5" sequence="1"/>
-                <!--内部询价单-->
-                <record id="purchase_rfq" model="ir.actions.act_window">
-                    <field name="name">内部询价单</field>
-                    <field name="type">ir.actions.act_window</field>
-                    <field name="res_model">purchase.order</field>
-                    <field name="context">{}</field>
-                    <field name="domain">[('state','in',('draft','sent','confirmed'))]</field>
-                    <field name="view_mode">tree,form,graph,calendar</field>
-                    <!--<field name="search_view_id" ref="view_purchase_order_filter"/>-->
-                    <field name="help" type="html">
-                      <p class="oe_view_nocontent_create">
-                        Click to create a request for quotation.
-                      </p><p>
-                        The quotation contains the history of the discussion/negociation
-                        you had with your supplier. Once confirmed, a request for
-                        quotation is converted into a purchase order.
-                      </p><p>
-                        Most propositions of purchase orders are created automatically
-                        by OpenERP based on inventory needs.
-                      </p>
-                    </field>
-                </record>
-        <menuitem action="purchase_rfq" name = "内部询价单" id="designer_purchase_rfq" parent="base.menu_base_designer_ask_price_4" sequence="0"/>
-        <!--绑定 action-->
 
     </data>
 </openerp>

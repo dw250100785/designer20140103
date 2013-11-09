@@ -16,10 +16,11 @@
                                 <field name="partner_id"/>
                                 <field name="contract_type"/>
                                 <field name="contract_amount"/>
+                                <field name="contract_amount_big"/>
                             </group>
                             <group>
                                 <field name="project_ids"/>
-                                <field name="contract_amount_big"/>
+
                             </group>
                         </group>
                         <group>
@@ -132,11 +133,7 @@
                     <!--<field name="search_view_id" ref="view_account_analytic_account_overdue_search"/>-->
                     <field name="help" type="html">
                         <p class="oe_view_nocontent_create">
-                            Click to create a new contract.
-                        </p><p>
-                            Use contracts to follow tasks, issues, timesheets or invoicing based on
-                            work done, expenses and/or sales orders. OpenERP will automatically manage
-                            the alerts for the renewal of the contracts to the right salesperson.
+                            点击新增合同.
                         </p>
                     </field>
                 </record>

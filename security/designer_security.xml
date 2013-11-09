@@ -10,7 +10,6 @@
         财务部  group_designer_finance
         总经理  group_designer_manager
     -->
-
     <record model="ir.module.category" id="module_category_designer_wuhan">
             <field name="name">武汉德客天工</field>
             <field name="description">武汉德客天工</field>

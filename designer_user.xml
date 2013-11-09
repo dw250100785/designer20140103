@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record model="res.company" id="main_company">
-            <field name="name">Evebit</field>
+        <record id="base.main_partner" model="res.partner" context="{'default_is_company': True}">
+            <field name="name">武汉德客天工1</field>
+            <field name="company_id" eval="None"/>
+            <field name="image" eval="False"/>
+            <field name="customer" eval="False"/>
+            <field name="is_company" eval="True"/>
+            <field name="street"></field>
+            <field name="city"></field>
+            <field name="zip"></field>
+            <field name="phone"></field>
+            <field name="email">info@yourcompany.com</field>
+            <field name="website">www.yourcompany.com</field>
+        </record>
+
+
+        <record id="base.main_company" model="res.company">
+                <field name="name">武汉德客天工11</field>
+                <field name="partner_id" ref="base.main_partner"/>
+                <field name="rml_header1">武汉德客天工</field>
+                <field name="currency_id" ref="base.CNY"/>
+        </record>
+
+        <record model="res.partner" id="base.partner_root">
+            <field name="name">管理员</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="customer" eval="False"/>
+            <field name="tz">Asia/Chongqing</field>
+            <field name="email">250100785@qq.com</field>
         </record>
 <!--客户部-->
         <record id="user_designer_kehubu_ae" model="res.users">

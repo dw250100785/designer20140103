@@ -18,6 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import logging
+
 import openerp.addons.decimal_precision as dp
 
 from openerp.osv import osv
@@ -25,6 +27,8 @@ from openerp.osv import fields
 from openerp.tools.translate import _
 import math
 import time
+
+_logger = logging.getLogger()
 class designer_contract_type(osv.osv):
     """ 品牌"""
     _name = 'designer.contract.type'
@@ -38,8 +42,11 @@ class designer_contract_type(osv.osv):
 
     _order = 'name asc'
 
+
+
 class designer_agreement(osv.osv):
     """ 扩展发票管理"""
+
     _name = "designer.agreement"
     _inherit = ['mail.thread']
 
@@ -50,11 +57,12 @@ class designer_agreement(osv.osv):
     #blog: http://zingers.iteye.com
     #感谢zinges提供了Python的版本
 
-    def numtoCny(num):
+    def numtoCny(self,contract_amount):
+
         capUnit = ['万','亿','万','圆','']
         capDigit = { 2:['角','分',''], 4:['仟','佰','拾','']}
         capNum=['零','壹','贰','叁','肆','伍','陆','柒','捌','玖']
-        snum = str('%019.02f') % num
+        snum = str('%019.02f') % contract_amount
         if snum.index('.')>16:
             return ''
         ret,nodeNum,subret,subChr='','','',''
@@ -76,16 +84,25 @@ class designer_agreement(osv.osv):
             subChr = [subret,subret+capUnit[i]][subret!='']
             if not ((subChr == capNum[0]) and (ret=='')):
                 ret += subChr
+
         return [ret,capNum[0]+capUnit[3]][ret=='']
 
-    def onchange_contractamount(self, cr, uid, ids, contract_amount, context=None):
-        return {'value':{'contract_amount_big': self.numtoCny(contract_amount) }}
+    def onchange_contractamount(self, cr, uid, ids, contract_amount):
+        if contract_amount > 0 :
+            #这里需要注意 调用numtoCny   函数时 传参个数的统一，总监大人说了 重庆-mrshelly(49812643)  15:30:23
+            #因为你使用了 self.numtoCny 所以,  有一个默认的 self 参数传过去了.
+            big = self.numtoCny(contract_amount)
+            return {'value':{'contract_amount_big': big}}
+        else :
+            return {}
+
+
 
     _columns = {
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
         'contract_type': fields.many2one('designer.contract.type',string='合同类型', required=True),
-        'contract_amount': fields.float('合同金额', on_change="onchange_contractamount(contract_amount)", digits_compute=dp.get_precision('contract_amount'),required=True),
+        'contract_amount': fields.float('合同金额', digits_compute=dp.get_precision('contract_amount'),required=True),
         'contract_amount_big': fields.char('合同金额大写', required=True),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'card_line': fields.one2many('designer.agreement.rule.line', 'card_id', '付款方式'),

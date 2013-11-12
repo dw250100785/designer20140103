@@ -15,7 +15,7 @@
                             <group>
                                 <field name="partner_id"/>
                                 <field name="contract_type"/>
-                                <field name="contract_amount"/>
+                                <field name="contract_amount" on_change="onchange_contractamount(contract_amount)"/>
                                 <field name="contract_amount_big"/>
                             </group>
                             <group>

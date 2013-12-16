@@ -13,7 +13,7 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="partner_id"/>
+                                <field name="partner_id" domain="[('partner_id.create_uid','=',uid)]"/>
                                 <field name="contract_type"/>
                                 <field name="contract_amount" on_change="onchange_contractamount(contract_amount)"/>
                                 <field name="contract_amount_big"/>

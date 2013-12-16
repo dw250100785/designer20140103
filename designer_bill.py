@@ -25,6 +25,8 @@ from openerp.osv import fields
 from openerp.tools.translate import _
 import time
 
+import pdb #debug
+
 class designer_bill(osv.osv):
     """ 发票管理"""
     _name = "designer.bill"
@@ -55,16 +57,62 @@ class designer_bill(osv.osv):
             [('true', '是'),
             ('false', '否')],
             '到账',track_visibility='onchange',
+        ),
+        'state': fields.selection([
+            ('draft', '草稿中'),
+            ('send', '已提交申请'),
+            ('makeout', '已开出'),
+            ('refuse', '已拒绝'),
+            ('accept', '已领取'),
+            ('done', '已确认')],
+            '状态', readonly=True, track_visibility='onchange',
         )
 
     }
     _rec_name = 'invoice_head'
 
-    _order = 'partner_id asc'
+    _order = 'id desc'
 
     _defaults = {
+        'state': lambda *a: 'draft',
         'state_apply': 'false',
         'state_make_out': 'false',
         'state_draw': 'false',
         'state_arrive': 'false',
     }
+
+    def designer_bill_draft(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+
+    def designer_bill_send(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'send','state_apply': 'true'}, context=context)
+
+
+    def designer_bill_notifer(self, cr, uid, id, context=None):
+        #current user id    uid
+        #list of ids    ids
+        #id -- id of the record to copy
+        pdb.set_trace()
+        #print id
+        #oe方法第三个参数一般是查询参数
+
+        raise osv.except_osv(_('Error!'),_("id is %d.",id))
+
+        self.message_post(cr, uid, id,
+                _("发票已经开出，请确认."), context=context)
+
+
+    def designer_bill_notifer11(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+#开出
+    def designer_bill_makeout(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'makeout','state_make_out': 'true'}, context=context)
+#开出  拒绝
+    def designer_bill_refuse(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'refuse','state_make_out':'false'}, context=context)
+#领取
+    def designer_bill_accept(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'accept','state_draw': 'true'}, context=context)
+#确认
+    def designer_bill_done(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'done','state_arrive': 'true'}, context=context)

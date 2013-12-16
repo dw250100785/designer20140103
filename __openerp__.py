@@ -95,6 +95,7 @@
         'workflow/designer_paper_workflow.xml',
         'workflow/designer_policy_workflow.xml',
         'workflow/designer_card_workflow.xml',
+        'workflow/designer_bill_workflow.xml',
     ],
     'update_xml': [],
     'js': [],

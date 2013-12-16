@@ -10,10 +10,24 @@
             <field name="arch" type="xml">
                 <form string="发票信息" version="7.0">
                     <header>
-                        <button name="designer_bill_notifer" string="通知AE" class="oe_highlight"/>
-                        <button name="designer_project_close" string="批准"  class="oe_highlight"/>
-                        <button name="designer_project_cancel" string="拒绝"   class="oe_highlight"/>
-                        <!--<field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>-->
+                        <!--
+                        ('draft', '草稿中'),
+                        ('send', '已提交申请'),
+                        ('makeout', '已开出'),
+                        ('refuse', '已拒绝'),
+                        ('accept', '已领取'),
+                        ('done', '已确认')],
+                        -->
+                        <button name="designer_bill_send" string="提交开票申请" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae"/>
+
+                        <button name="designer_bill_notifer" string="通知AE"      states="send" class="oe_highlight" groups="designer.group_designer_finance_ae"/><!--财务开出发票并通知ae-->
+                        <button name="designer_bill_makeout" string="开出发票"    states="send" class="oe_highlight" groups="designer.group_designer_finance_ae"/><!--财务开出-->
+                        <button name="designer_bill_refuse" string="拒绝发票"     states="send" class="oe_highlight" groups="designer.group_designer_finance_ae"/><!--财务拒绝开出-->
+
+                        <button name="designer_bill_accept" string="领取发票"     states="makeout" class="oe_highlight" groups="designer.group_designer_customer_ae"/><!--客户部ae领取-->
+
+                        <button name="designer_bill_done" string="确认发票"       states="accept" class="oe_highlight" groups="designer.group_designer_finance_ae"/><!--财务确认发票-->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,refuse,accept,makeout,done"/>
                     </header>
                     <sheet>
                         <group>
@@ -21,10 +35,11 @@
                             <field name="project_ids"/>
                             <field name="invoice_head"/>
                             <field name="invoice_amount"/>
-                            <field name="state_apply"/>
-                            <field name="state_make_out"/>
-                            <field name="state_draw"/>
-                            <field name="state_arrive"/>
+
+                            <field readonly="1" name="state_apply"/>
+                            <field readonly="1" name="state_make_out"/>
+                            <field readonly="1" name="state_draw"/>
+                            <field readonly="1" name="state_arrive"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">

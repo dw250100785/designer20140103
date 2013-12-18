@@ -25,7 +25,7 @@ from openerp.osv import fields
 from openerp.tools.translate import _
 import time
 #工作流审批
-from openerp.addons.workflow_info import workflow_func
+import workflow_func
 
 class designer_inquiry(osv.osv):
     """ 自定义的询价单"""

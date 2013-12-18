@@ -45,6 +45,7 @@
     'author': 'Evebit',
     'website': 'http://evebit.com',
     'depends': [
+        'web',
         'mail',
         'base',
         'idea',
@@ -60,6 +61,7 @@
         ],
     'data': [
         'security/designer_security.xml',
+        'security/access_workflow_log/ir.model.access.csv',#工作流审批记录
         'security/access_agreement/ir.model.access.csv',
         'security/access_archive/ir.model.access.csv',
         'security/access_bill/ir.model.access.csv',
@@ -71,6 +73,8 @@
         'security/access_paper/ir.model.access.csv',
         'security/access_policy/ir.model.access.csv',
         'security/access_project/ir.model.access.csv',
+        'security/access_kehu_ae/ir.model.access.csv',#针对客户部AE
+        'cn_auto_setup.xml', #中国化
         'designer_user.xml',
         'base_menu.xml',
         'designer_project_view.xml',
@@ -96,11 +100,18 @@
         'workflow/designer_policy_workflow.xml',
         'workflow/designer_card_workflow.xml',
         'workflow/designer_bill_workflow.xml',
+        'workflow/designer_inquiry_workflow.xml',#询价单   一次
+        'workflow/designer_offer_workflow.xml',#报价单     两次
+        'workflow/designer_agreement_workflow.xml',#合同   两次确认
     ],
     'update_xml': [],
-    'js': [],
+    'js': [
+        'static/src/js/*.js' #工作流审批记录
+    ],
     'css': [],
-    'qweb': [],
+    'qweb': [
+        'static/src/xml/*.xml',#工作流审批记录
+    ],
     'demo': [],
     'test':[],
     'application': False,

@@ -24,6 +24,8 @@ from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
 import time
+#工作流审批
+from openerp.addons.workflow_info import workflow_func
 
 class designer_inquiry(osv.osv):
     """ 自定义的询价单"""
@@ -37,11 +39,18 @@ class designer_inquiry(osv.osv):
         'date_order':fields.date('日期', required=True, select=True, help="Date on which this document has been created."),
         'card_line': fields.one2many('designer.inquiry.line', 'card_id', '物料清单'),
         'state': fields.selection([('draft', '草稿中'),
-            ('open', '已批准'),
+            ('open', '已提交给制作部'),
             ('cancel', '已拒绝'),
             ('close', '已完成')],
             '状态', readonly=True, track_visibility='onchange',
-        )
+        ),
+        #工作流审批以及记录
+        'wkf_logs':fields.function(
+            workflow_func._get_workflow_logs,
+            string='审批记录',
+            type='one2many',
+            relation="workflow.logs",
+            readonly=True),
     }
 
     _rec_name = 'name'
@@ -70,16 +79,16 @@ class designer_inquiry(osv.osv):
         })
         return super(designer_inquiry, self).copy(cr, uid, id, default, context)
 
-    def designer_card_cancel(self, cr, uid, ids, context=None):
+    def designer_inquiry_cancel(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
-    def designer_card_open(self, cr, uid, ids, context={}):
+    def designer_inquiry_open(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_card_close(self, cr, uid, ids, context={}):
+    def designer_inquiry_close(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'close'}, context=context)
 
-    def designer_card_draft(self, cr, uid, ids, context={}):
+    def designer_inquiry_draft(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
 
 class designer_inquiry_line(osv.osv):

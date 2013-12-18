@@ -106,6 +106,15 @@ class designer_agreement(osv.osv):
         'contract_amount_big': fields.char('合同金额大写', required=True),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'card_line': fields.one2many('designer.agreement.rule.line', 'card_id', '付款方式'),
+        'state': fields.selection([
+            ('draft', '草稿中'),
+            ('open', '已批准'),
+            ('verify1', '一次确认'),
+            ('verify2', '二次确认'),
+            ('cancel', '已拒绝')],
+            '状态', readonly=True, track_visibility='onchange',
+        ),
+
 
     }
     _rec_name = "contract_type"
@@ -113,6 +122,24 @@ class designer_agreement(osv.osv):
     _defaults = {
 
     }
+    def designer_agreement_draft(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+
+    def designer_agreement_cancel1(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+
+    def designer_agreement_cancel2(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+
+    def designer_agreement_open(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'open'}, context=context)
+
+    def designer_agreement_verify1(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify1'}, context=context)
+
+    def designer_agreement_verify2(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify2'}, context=context)
+
 
 
 class designer_agreement_rule_line(osv.osv):

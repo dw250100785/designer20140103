@@ -55,7 +55,7 @@
             <field name="model">designer.bill</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="发票">
+                <tree colors="blue:state == 'draft';pink:state == 'send';black:state =='makeout';red:state == 'refuse';green:state == 'accept';gray:state == 'done'" string="发票">
                     <field name="partner_id"/>
                     <field name="project_ids"/>
                     <field name="invoice_head"/>

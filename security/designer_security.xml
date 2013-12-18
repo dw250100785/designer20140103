@@ -20,6 +20,12 @@
     </record>
 
     <!--通用权限组-->
+    <!--
+    通用权限为：
+
+
+
+    -->
     <record id="group_designer_base_user" model="res.groups">
         <field name="name">武汉德客天工员工通用组</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>

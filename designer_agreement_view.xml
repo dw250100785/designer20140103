@@ -10,10 +10,20 @@
             <!--<field eval="30" name="priority"/>-->
             <field name="arch" type="xml">
                 <form string="合同" version="7.0">
+                    <header>
+                        <button name="designer_agreement_open" string="开启" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae" help = "拟写合同"/>
+                        <button name="designer_agreement_verify1" string="批准" states="open" class="oe_highlight" groups="designer.group_designer_customer_manager" help = "合同草稿生成" />
+                        <button name="designer_agreement_cancel1" string="拒绝" states="open"  class="oe_highlight" groups="designer.group_designer_customer_manager" help = "合同草稿生成" />
+
+                        <button name="designer_agreement_verify2" string="确认" states="verify1"  class="oe_highlight" groups="designer.group_designer_customer_ae" help = "客户确认" /><!--制作部-->
+                        <button name="designer_agreement_cancel2" string="拒绝" states="verify1"  class="oe_highlight" groups="designer.group_designer_customer_ae" help = "客户签字盖章" /><!--制作部-->
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,verify1,verify2,close"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
-                                <field name="partner_id" domain="[('partner_id.create_uid','=',uid)]"/>
+                                <field name="partner_id" domain="[('partner_id.user_id','=',uid)]"/><!--查看并选择自己的客户-->
                                 <field name="contract_type"/>
                                 <field name="contract_amount" on_change="onchange_contractamount(contract_amount)"/>
                                 <field name="contract_amount_big"/>
@@ -48,6 +58,7 @@
                     <field name="contract_type"/>
                     <field name="contract_amount"/>
                     <field name="project_ids"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>

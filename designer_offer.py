@@ -36,12 +36,14 @@ class designer_offer(osv.osv):
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'date_order':fields.date('日期', required=True, select=True, help="Date on which this document has been created."),
         'card_line': fields.one2many('designer.offer.line', 'card_id', '物料清单'),
-        'state': fields.selection([('draft', '草稿中'),
-            ('open', '已批准'),
-            ('cancel', '已拒绝'),
-            ('close', '已完成')],
+        'state': fields.selection([
+            ('draft', '草稿中'),
+            ('open', '已提交'),
+            ('verify1', '一次确认'),
+            ('verify2', '二次确认'),
+            ('cancel', '已拒绝')],
             '状态', readonly=True, track_visibility='onchange',
-        )
+        ),
     }
 
     _rec_name = 'name'
@@ -69,17 +71,24 @@ class designer_offer(osv.osv):
         })
         return super(designer_offer, self).copy(cr, uid, id, default, context)
 
-    def designer_card_cancel(self, cr, uid, ids, context=None):
+
+    def designer_offer_draft(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+
+    def designer_offer_cancel1(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
-    def designer_card_open(self, cr, uid, ids, context={}):
+    def designer_offer_cancel2(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+
+    def designer_offer_open(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_card_close(self, cr, uid, ids, context={}):
-        return self.write(cr, uid, ids, {'state': 'close'}, context=context)
+    def designer_offer_verify1(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify1'}, context=context)
 
-    def designer_card_draft(self, cr, uid, ids, context={}):
-        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+    def designer_offer_verify2(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify2'}, context=context)
 
 class designer_offer_line(osv.osv):
     """ 项目工作卡物料管理"""

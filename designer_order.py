@@ -38,10 +38,12 @@ class designer_order(osv.osv):
         'order_no': fields.char('工单编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'order_line': fields.one2many('designer.order.line', 'order_id', '制作明细', readonly=True, states={'draft':[('readonly',False)]}),
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
-        'state': fields.selection([('draft', '草稿中'),
+        'state': fields.selection([
+            ('draft', '草稿中'),
             ('open', '已批准'),
-            ('cancel', '已拒绝'),
-            ('close', '已完成')],
+            ('verify1', '一次确认'),
+            ('verify2', '二次确认'),
+            ('cancel', '已拒绝')],
             '状态', readonly=True, track_visibility='onchange',
         ),
         'project_type': fields.selection([('print', '印刷'),
@@ -60,17 +62,25 @@ class designer_order(osv.osv):
     }
     _order = 'order_no asc'
 
-    def designer_order_cancel(self, cr, uid, ids, context=None):
+
+
+    def designer_order_draft(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+
+    def designer_order_cancel1(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
+
+    def designer_order_cancel2(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'state': 'cancel'}, context=context)
 
     def designer_order_open(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'open'}, context=context)
 
-    def designer_order_close(self, cr, uid, ids, context={}):
-        return self.write(cr, uid, ids, {'state': 'close'}, context=context)
+    def designer_order_verify1(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify1'}, context=context)
 
-    def designer_order_draft(self, cr, uid, ids, context={}):
-        return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+    def designer_order_verify2(self, cr, uid, ids, context={}):
+        return self.write(cr, uid, ids, {'state': 'verify2'}, context=context)
 
 
 class designer_order_line(osv.osv):

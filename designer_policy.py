@@ -62,6 +62,7 @@ class designer_policy(osv.osv):
 
     def designer_policy_draft(self, cr, uid, ids, context={}):
         return self.write(cr, uid, ids, {'state': 'draft'}, context=context)
+
 class designer_policy_line(osv.osv):
     """ 创意策略"""
     _name = 'designer.policy.line'

@@ -11,8 +11,8 @@
                     <header>
                         <button name="designer_inquiry_open" string="开启" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae" help = "项目制作明细,印刷、拍摄、动画、3D、插画、摄影、网站等…"/>
 
-                        <button name="designer_inquiry_close" string="提交报价" states="open" type="workflow_ok" class="oe_highlight" groups="designer.group_designer_make_ae" help = "客户签字" />
-                        <button name="designer_inquiry_cancel" string="拒绝" states="open" type="workflow_no" class="oe_highlight" groups="designer.group_designer_make_ae"  help = "客户签字" />
+                        <button name="designer_inquiry_close" string="提交报价" type="workflow_ok" states="open"  class="oe_highlight" groups="designer.group_designer_make_ae" help = "客户签字" />
+                        <button name="designer_inquiry_cancel" string="拒绝"  type="workflow_no" states="open"  class="oe_highlight" groups="designer.group_designer_make_ae"  help = "客户签字" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                     </header>
                     <sheet>
@@ -32,8 +32,6 @@
                             </field>
                             <field name="wkf_logs">
                                     <tree string="xxx" colors="red:status== 'no'">
-                                        <field name="job_id" />
-                                        <field name="employee_id"/>
                                         <field name="uid"/>
                                         <field name="time" />
                                         <field name="status"/>

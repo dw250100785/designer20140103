@@ -106,7 +106,7 @@
     ],
     'update_xml': [],
     'js': [
-        'static/src/js/*.js' #工作流审批记录
+        'static/src/js/*.js' #工作流审批记录   暂时不将 workflow_info模块进行兼容！！！
     ],
     'css': [],
     'qweb': [

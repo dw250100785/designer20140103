@@ -36,7 +36,7 @@ import web.http as openerpweb
 
 
 class WklDataSet(openerpweb.Controller):
-    _cp_path = "/web/workflow_info"
+    _cp_path = "/web/designer"  #指向当前模块  js调用
 
     @openerpweb.jsonrequest
     def info(self, req, model, id, signal,status,note):

@@ -24,7 +24,7 @@ from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
 import time
-#工作流审批
+#导入 工作流审批模块
 import workflow_func
 
 class designer_inquiry(osv.osv):

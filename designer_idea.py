@@ -23,6 +23,7 @@ from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
 import time
+import workflow_func
 
 class designer_idea(osv.osv):
     """ 创意简报"""
@@ -59,7 +60,14 @@ class designer_idea(osv.osv):
             help='总监审核，并创建提案ppt.\
             \nae第一次确认并给客户签字.\
             \n 第二次确认完稿时间.'
-        )
+        ),
+        #工作流审批以及记录
+        'wkf_logs':fields.function(
+            workflow_func._get_workflow_logs,
+            string='审批记录',
+            type='one2many',
+            relation="workflow.logs",
+            readonly=True),
     }
     _sql_constraints = [
         ('name', 'unique(name)', 'The name of the idea must be unique')

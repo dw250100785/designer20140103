@@ -23,6 +23,7 @@ from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
 import time
+import workflow_func
 
 class designer_paper(osv.osv):
     """ 竟稿申请"""
@@ -32,12 +33,19 @@ class designer_paper(osv.osv):
         'paper_no': fields.char('编号', size=64, required=True),
         'reason': fields.text('原因', help='原因'),
         'comment': fields.text('意见', help='意见'),
-        'state': fields.selection([('draft', '草稿中'),
-            ('open', '已批准'),
+        'state': fields.selection([('draft', '未提交'),
+            ('open', '已提交'),
             ('cancel', '已拒绝'),
             ('close', '已完成')],
             '状态', readonly=True, track_visibility='onchange',
         ),
+        #工作流审批以及记录
+        'wkf_logs':fields.function(
+            workflow_func._get_workflow_logs,
+            string='审批记录',
+            type='one2many',
+            relation="workflow.logs",
+            readonly=True),
     }
     _rec_name = 'paper_no'
     _sql_constraints = [

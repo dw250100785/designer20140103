@@ -41,7 +41,6 @@ import cn_auto_select_smtp  #中国化
 import cn_auto_setup        #中国化   自动安装
 
 # openerp工作流增强，在审批或拒绝过程中，可以输入审批信息，同时记录审批记录
-
 import controller
 import workflow
 import workflow_func

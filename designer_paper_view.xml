@@ -8,10 +8,10 @@
             <field name="arch" type="xml">
                 <form string="竟稿申请" version="7.0">
                     <header>
-                        <button name="designer_paper_open" string="提交" states="draft" class="oe_highlight"/>
-                        <button name="designer_paper_close" string="批准" states="open" class="oe_highlight"/>
-                        <button name="designer_paper_cancel" string="拒绝" states="open"  class="oe_highlight"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                        <button name="designer_paper_open" string="总监提交意见" type="workflow_ok" states="draft" class="oe_highlight" groups="designer.group_designer_customer_manager" help = "意见" /><!--客户部总监 提交并添写意见-->
+                        <button name="designer_paper_close" string="批准"  type="workflow_ok" states="open" class="oe_highlight" groups="designer.group_designer_manager" />
+                        <button name="designer_paper_cancel" string="拒绝" type="workflow_no" states="open"  class="oe_highlight" groups="designer.group_designer_manager" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,cancel,close"/>
                     </header>
                     <sheet>
                         <label for="paper_no"/>
@@ -21,6 +21,14 @@
                             <field name="reason"/>
                             <field name="comment"/>
                             <field name="state"/>
+                            <field name="wkf_logs">
+                                    <tree string="xxx" colors="red:status== 'no'">
+                                        <field name="uid"/>
+                                        <field name="time" />
+                                        <field name="status"/>
+                                        <field name="info"/>
+                                    </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>

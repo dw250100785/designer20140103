@@ -110,11 +110,23 @@ class designer_agreement(osv.osv):
         for hetong in self.browse(cr, uid, ids, context=context):
             print hetong.offer_ids.id
             cr.execute(
-                    "SELECT sum(subprice) FROM designer_offer_line WHERE card_id=%s ",(hetong.offer_ids.id,)) #注意参数格式  ()
-            res[hetong.id] = cr.fetchone()[0]
+                    "SELECT sum(subprice) FROM designer_offer_line WHERE card_id=%s ",(hetong.offer_ids.id,))
+            res[hetong.id] = cr.fetchone()[0]#注意参数格式  ()
 
         return res
         #return {'value':{'contract_amount': res}}
+    def _cal_contract_amount_big_by_offer(self, cr, uid, ids, field_name, args, context=None):
+        res = {}
+        #获得订单对象
+        offer_obj = self.pool.get("designer.offer")
+        #hetong_obj = self.browse(cr, uid, ids, context=context)
+
+        for hetong in self.browse(cr, uid, ids, context=context):
+            cr.execute(
+                    "SELECT sum(subprice) FROM designer_offer_line WHERE card_id=%s ",(hetong.offer_ids.id,))
+            res[hetong.id] =self.numtoCny(cr.fetchone()[0]) #注意参数格式  (,)
+        return res
+
 
 
 
@@ -127,7 +139,8 @@ class designer_agreement(osv.osv):
         'offer_ids': fields.many2one('designer.offer', string='报价单'),#合同金额跟报价单的关系  related
        # 'contract_amount': fields.float('合同金额', digits_compute=dp.get_precision('contract_amount'),required=True),
         'contract_amount': fields.function(_cal_contract_amount_by_offer,type='float',method="true", relation='designer.offer',string='合同金额',store=True,digits_compute=dp.get_precision('contract_amount')),
-        'contract_amount_big': fields.char('合同金额大写', required=True),
+        'contract_amount_big': fields.function(_cal_contract_amount_big_by_offer,type='char',method="true", relation='designer.offer',string='合同金额大写',store=True),
+        #'contract_amount_big': fields.char('合同金额大写', required=True),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'card_line': fields.one2many('designer.agreement.rule.line', 'card_id', '付款方式'),
         'state': fields.selection([

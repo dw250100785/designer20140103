@@ -58,6 +58,7 @@
         'account',
         'document',
         'purchase',
+        'audittrail',#使用审核跟踪
         ],
     'data': [
         'security/designer_security.xml',
@@ -77,6 +78,7 @@
         'cn_auto_setup.xml', #中国化
         'designer_user.xml',
         'base_menu.xml',
+        'audittrail_log.xml',#审核跟踪
         'designer_project_view.xml',
         'designer_brand_view.xml',
         'designer_idea_view.xml',

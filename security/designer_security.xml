@@ -12,6 +12,8 @@
         制作部  group_designer_make
         财务部  group_designer_finance
         总经理  group_designer_manager
+
+        总监总是拥有员工的所有权限
     -->
     <record model="ir.module.category" id="module_category_designer_wuhan">
             <field name="name">武汉德客天工</field>
@@ -44,7 +46,7 @@
     <record id="group_designer_customer_manager" model="res.groups">
         <field name="name">客户部总监</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_customer'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_customer')),(4, ref('group_designer_customer_ae'))]"/>
         <field name="comment">客户部总监</field>
     </record>
     <record id="group_designer_customer_ae" model="res.groups">
@@ -64,7 +66,7 @@
     <record id="group_designer_idea_manager" model="res.groups">
         <field name="name">创意部总监</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_idea'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_idea')),(4, ref('group_designer_idea_ae'))]"/>
         <field name="comment">创意部总监</field>
     </record>
     <record id="group_designer_idea_ae" model="res.groups">
@@ -86,7 +88,7 @@
         <field name="name">设计部总监</field>
         <field name="comment">设计部总监</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_design'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_design')),(4, ref('group_designer_design_ae'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
     <record id="group_designer_design_ae" model="res.groups">
@@ -109,7 +111,7 @@
         <field name="name">行政部总监</field>
         <field name="comment">行政部总监</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_office'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_office')),(4, ref('group_designer_office_ae'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
     <record id="group_designer_office_ae" model="res.groups">
@@ -132,7 +134,7 @@
         <field name="name">制作部总监</field>
         <field name="comment">制作部总监</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_make'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_make')),(4, ref('group_designer_make_ae'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
     <record id="group_designer_make_ae" model="res.groups">
@@ -154,7 +156,7 @@
         <field name="name">财务部总监</field>
         <field name="comment">财务部总监</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_finance'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_finance')),(4, ref('group_designer_finance_ae'))]"/>
         <field name="users" eval="[(4, ref('base.user_root'))]"/>
     </record>
     <record id="group_designer_finance_ae" model="res.groups">

@@ -22,11 +22,13 @@ import logging
 
 import openerp.addons.decimal_precision as dp
 
+
 from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
 import math
 import time
+import workflow_func
 
 _logger = logging.getLogger()
 class designer_contract_type(osv.osv):
@@ -49,6 +51,9 @@ class designer_agreement(osv.osv):
 
     _name = "designer.agreement"
     _inherit = ['mail.thread']
+
+    def _get_seq(self, cr, uid, ids, context=None):
+        return self.pool.get('ir.sequence').get(cr, uid, 'designer.agreement')
 
 
 
@@ -96,13 +101,32 @@ class designer_agreement(osv.osv):
         else :
             return {}
 
+    def _cal_contract_amount_by_offer(self, cr, uid, ids, field_name, args, context=None):
+        res = {}
+        #获得订单对象
+        offer_obj = self.pool.get("designer.offer")
+        #hetong_obj = self.browse(cr, uid, ids, context=context)
+
+        for hetong in self.browse(cr, uid, ids, context=context):
+            print hetong.offer_ids.id
+            cr.execute(
+                    "SELECT sum(subprice) FROM designer_offer_line WHERE card_id=%s ",(hetong.offer_ids.id,)) #注意参数格式  ()
+            res[hetong.id] = cr.fetchone()[0]
+
+        return res
+        #return {'value':{'contract_amount': res}}
+
+
 
 
     _columns = {
+        'no': fields.char('合同编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
         'contract_type': fields.many2one('designer.contract.type',string='合同类型', required=True),
-        'contract_amount': fields.float('合同金额', digits_compute=dp.get_precision('contract_amount'),required=True),
+        'offer_ids': fields.many2one('designer.offer', string='报价单'),#合同金额跟报价单的关系  related
+       # 'contract_amount': fields.float('合同金额', digits_compute=dp.get_precision('contract_amount'),required=True),
+        'contract_amount': fields.function(_cal_contract_amount_by_offer,type='float',method="true", relation='designer.offer',string='合同金额',store=True,digits_compute=dp.get_precision('contract_amount')),
         'contract_amount_big': fields.char('合同金额大写', required=True),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'card_line': fields.one2many('designer.agreement.rule.line', 'card_id', '付款方式'),
@@ -114,12 +138,20 @@ class designer_agreement(osv.osv):
             ('cancel', '已拒绝')],
             '状态', readonly=True, track_visibility='onchange',
         ),
+        #工作流审批以及记录
+        'wkf_logs':fields.function(
+            workflow_func._get_workflow_logs,
+            string='审批记录',
+            type='one2many',
+            relation="workflow.logs",
+            readonly=True),
 
 
     }
-    _rec_name = "contract_type"
+    _rec_name = "no"
 
     _defaults = {
+        "no":_get_seq
 
     }
     def designer_agreement_draft(self, cr, uid, ids, context={}):
@@ -154,11 +186,10 @@ class designer_agreement_rule_line(osv.osv):
         'note': fields.text('里程碑',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _rec_name = "line_no"
     _defaults = {
-     #   'line_no': 1,
+        'line_no': 1,
     }
     _order = 'line_no asc'
 

@@ -32,7 +32,7 @@ class designer_paper(osv.osv):
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
         'paper_no': fields.char('编号', size=64, required=True),
         'reason': fields.text('原因', help='原因'),
-        'comment': fields.text('意见', help='意见'),
+        'comment': fields.text('意见', help='意见'),#不要了
         'state': fields.selection([('draft', '未提交'),
             ('open', '已提交'),
             ('cancel', '已拒绝'),

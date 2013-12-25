@@ -35,6 +35,7 @@
                             <field name="project_ids"/>
                             <field name="invoice_head"/>
                             <field name="invoice_amount"/>
+                            <field name="date"/>
 
                             <field readonly="1" name="state_apply"/>
                             <field readonly="1" name="state_make_out"/>
@@ -55,7 +56,15 @@
             <field name="model">designer.bill</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree colors="blue:state == 'draft';pink:state == 'send';black:state =='makeout';red:state == 'refuse';green:state == 'accept';gray:state == 'done'" string="发票">
+                <!--
+                        ('draft', '草稿中'),
+                        ('send', '已提交申请'),
+                        ('makeout', '已开出'),
+                        ('refuse', '已拒绝'),
+                        ('accept', '已领取'),
+                        ('done', '已确认')],
+                        -->
+                <tree colors="blue:draft;pink:send;black:makeout;red:refuse;green:accept;gray:done" string="发票">
                     <field name="partner_id"/>
                     <field name="project_ids"/>
                     <field name="invoice_head"/>
@@ -64,6 +73,7 @@
                     <field name="state_make_out"/>
                     <field name="state_draw"/>
                     <field name="state_arrive"/>
+                    <field name="date"/>
                 </tree>
             </field>
         </record>

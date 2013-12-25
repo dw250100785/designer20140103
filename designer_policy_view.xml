@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form string="创意策略" version="7.0">
                     <header>
-                        <button name="designer_policy_open" string="开启" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae,designer.group_designer_idea_ae,designer.group_designer_design_ae" help = "细节，包括制作工艺"/>
+                        <button name="designer_policy_open" string="提交" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae,designer.group_designer_idea_ae,designer.group_designer_design_ae" help = "细节，包括制作工艺"/>
 
                         <button name="designer_policy_close" string="批准" states="open" class="oe_highlight" groups="designer.group_designer_customer_ae" help = "客户签字" />
                         <button name="designer_policy_cancel" string="拒绝" states="open"  class="oe_highlight" groups="designer.group_designer_customer_ae"  help = "客户签字" />

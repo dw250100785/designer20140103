@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <form string="报价单" version="7.0">
                     <header>
-                        <button name="designer_offer_open" string="开启" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae" help = "明确注明制作内容、要求、数量等信息"/>
+                        <button name="designer_offer_open" string="提交" states="draft" class="oe_highlight" groups="designer.group_designer_customer_ae" help = "明确注明制作内容、要求、数量等信息"/>
                         <button name="designer_offer_verify1" string="确认1" states="open" class="oe_highlight" groups="designer.group_designer_customer_manager" help = "确认工单及制作文件" />
                         <button name="designer_offer_cancel1" string="拒绝" states="open"  class="oe_highlight" groups="designer.group_designer_customer_manager" help = "确认工单及制作文件" />
 

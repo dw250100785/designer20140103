@@ -14,7 +14,7 @@
         </record>
 
 
-        <!-- Sequences for 报价单 -->
+        <!-- 报价单单号 -->
         <record id="seq_type_designer_offer" model="ir.sequence.type">
             <field name="name">designer offer</field>
             <field name="code">designer.offer</field>
@@ -23,6 +23,19 @@
             <field name="name">designer offer</field>
             <field name="code">designer.offer</field>
             <field name="prefix">PO</field>
+            <field name="padding">5</field>
+        </record>
+
+        <!--合同编号-->
+
+        <record id="seq_type_designer_agreement" model="ir.sequence.type">
+            <field name="name">designer agreement</field>
+            <field name="code">designer.agreement</field>
+        </record>
+        <record id="seq_designer_agreement" model="ir.sequence">
+            <field name="name">designer agreement</field>
+            <field name="code">designer.agreement</field>
+            <field name="prefix">DK--HT</field>
             <field name="padding">5</field>
         </record>
     </data>

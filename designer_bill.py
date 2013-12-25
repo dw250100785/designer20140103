@@ -36,6 +36,7 @@ class designer_bill(osv.osv):
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
         'invoice_head': fields.char('发票抬头', size=64, required=True),
+        'date':fields.datetime('日期',required=True),
         'invoice_amount': fields.float('金额', digits_compute=dp.get_precision('invoice_amount'),required=True),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'state_apply': fields.selection(

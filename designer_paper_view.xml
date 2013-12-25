@@ -19,7 +19,7 @@
                         <group>
                             <field name="project_id"/>
                             <field name="reason"/>
-                            <field name="comment"/>
+                            <!--<field name="comment"/>-->
                             <field name="state"/>
                             <field name="wkf_logs">
                                     <tree string="xxx" colors="red:status== 'no'">
@@ -44,7 +44,7 @@
                 <field name="project_id"/>
                 <field name="paper_no"/>
                 <field name="reason"/>
-                <field name="comment"/>
+                <!--<field name="comment"/>-->
                 <field name="state"/>
             </tree>
             </field>

@@ -28,6 +28,7 @@ class designer_policy(osv.osv):
     _name = 'designer.policy'
     _inherit = ['mail.thread']
     _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
         'policy_no': fields.char('编号', size=64, required=True),
         'name': fields.char('名称', size=64, required=True),

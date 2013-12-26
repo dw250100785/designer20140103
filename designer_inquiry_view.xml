@@ -17,9 +17,11 @@
                     </header>
                     <sheet>
                         <group>
+                            <field name="work_id"/>
                             <field name="partner_id"/>
                             <field name="project_ids"/>
                             <field name="date_order"/>
+                            <field name="state" attrs="{'invisible':1}"/>
                             <field name="card_line">
                                     <tree editable="bottom" string="物料清单">
                                         <field name="line_no"/>
@@ -27,6 +29,7 @@
                                         <field name="number" />
                                         <field name="price"/>
                                         <field name="subprice"/>
+                                        <!--<field name="subprice" attrs="{'invisible':[('_is_zhizuo', '==', 'true')]}" />&lt;!&ndash;在草稿状态，也就是ae处理时，不显示总价&ndash;&gt;-->
                                         <field name="note"/>
                                     </tree>
                             </field>
@@ -50,6 +53,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree  string="物料单">
+                    <field name="work_id"/>
                     <field name="partner_id"/>
                     <field name="project_ids"/>
                     <field name="date_order"/>
@@ -95,23 +99,33 @@
             </field>
         </record>
 
+        <record id="designer_inquiry_view_search" model="ir.ui.view">
+            <field name="name">designer.inquiry.view.search</field>
+            <field name="model">designer.inquiry</field>
+            <field name="arch" type="xml">
+                <search string="内部询价单搜素">
+                   <field name="work_id" string="工作卡"/>
+               </search>
+            </field>
+        </record>
+
 
 
         <!--询价单-->
-                <record id="action_designer_inquiry" model="ir.actions.act_window">
-                    <field name="name">内部询价单</field>
-                    <field name="type">ir.actions.act_window</field>
-                    <field name="res_model">designer.inquiry</field>
-                    <field name="context">{}</field>
-                    <!--<field name="domain">[('state','in',('draft','sent','confirmed'))]</field>-->
-                    <field name="view_mode">tree,form</field>
-                    <!--<field name="search_view_id" ref="view_purchase_order_filter"/>-->
-                    <field name="help" type="html">
-                      <p class="oe_view_nocontent_create">
-                        点击新增询价单.
-                      </p>
-                    </field>
-                </record>
+        <record id="action_designer_inquiry" model="ir.actions.act_window">
+            <field name="name">内部询价单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">designer.inquiry</field>
+            <field name="context">{}</field>
+            <!--<field name="domain">[('state','in',('draft','sent','confirmed'))]</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="designer_inquiry_view_search"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                点击新增询价单.
+              </p>
+            </field>
+        </record>
         <menuitem action="action_designer_inquiry" name = "询价单" id="designer_inquiry" parent="base.menu_base_designer_ask_price_4" sequence="0"/>
 
 

@@ -55,7 +55,21 @@ class designer_agreement(osv.osv):
     def _get_seq(self, cr, uid, ids, context=None):
         return self.pool.get('ir.sequence').get(cr, uid, 'designer.agreement')
 
+    """
+    分期付款，比例必须总和为100
+    """
 
+    def write(self, cr, uid, ids, values, context = None):
+
+        for hetong in self.browse(cr, uid, ids, context=context):
+            cr.execute(
+                    "SELECT sum(percentage) FROM designer_agreement_rule_line WHERE card_id=%s ",(hetong.id,))
+            percentage = cr.fetchone()[0]#注意参数格式  ()
+        if percentage != '100':
+            raise osv.except_osv(('错误提示'), ('分期付款比例总和必须为100'))
+        else :
+            res = super(designer_agreement, self).write(cr, uid, ids, values, context = context)
+        return res
 
     #人民币金额转大写程序Python版本
     #Copyright: zinges at foxmail.com
@@ -108,7 +122,6 @@ class designer_agreement(osv.osv):
         #hetong_obj = self.browse(cr, uid, ids, context=context)
 
         for hetong in self.browse(cr, uid, ids, context=context):
-            print hetong.offer_ids.id
             cr.execute(
                     "SELECT sum(subprice) FROM designer_offer_line WHERE card_id=%s ",(hetong.offer_ids.id,))
             res[hetong.id] = cr.fetchone()[0]#注意参数格式  ()
@@ -132,6 +145,7 @@ class designer_agreement(osv.osv):
 
 
     _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'no': fields.char('合同编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
@@ -164,7 +178,8 @@ class designer_agreement(osv.osv):
     _rec_name = "no"
 
     _defaults = {
-        "no":_get_seq
+        "no":_get_seq ,
+        'state': lambda *a: 'draft',
 
     }
     def designer_agreement_draft(self, cr, uid, ids, context={}):

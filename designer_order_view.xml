@@ -20,6 +20,9 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,verify1,verify2,close"/>
                     </header>
                     <sheet>
+                        <group>
+                            <field name="work_id"/>
+                        </group>
                         <label for="project_type"/>
                         <h1><field name="project_type"/></h1>
                         <label for="project_id"/>
@@ -58,6 +61,7 @@
             <field name="model">designer.order</field>
             <field name="arch" type="xml">
             <tree colors="blue:state == 'draft';black:state in ('open','close');gray:state == 'cancel'" string="工作卡">
+                <field name="work_id"/>
                 <field name="order_no"/>
                 <field name="project_id"/>
                 <field name="project_type"/>
@@ -66,13 +70,25 @@
             </field>
         </record>
 
+        <record id="designer_order_view_search" model="ir.ui.view">
+            <field name="name">designer.order.view.search</field>
+            <field name="model">designer.order</field>
+            <field name="arch" type="xml">
+                <search string="工单搜素">
+                   <field name="work_id" string="工作卡"/>
+               </search>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="action_designer_order">
             <field name="name">工单</field>
             <field name="res_model">designer.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <!--<field name="search_view_id" ref="idea.view_idea_idea_search"/>-->
+            <field name="search_view_id" ref="designer_order_view_search"/>
         </record>
+
         <menuitem name="制作工单" parent="base.menu_base_designer_work_order_11" id="menu_designer_order_report" action="action_designer_order" sequence="1"/>
 
 

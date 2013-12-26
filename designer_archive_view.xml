@@ -14,6 +14,9 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                     </header>
                     <sheet>
+                        <group>
+                            <field name="work_id"/>
+                        </group>
                         <label for="project_id"/>
                         <h1><field name="project_id"/></h1>
                         <label for="archive_no"/>
@@ -80,18 +83,31 @@
             <field name="arch" type="xml">
             <tree colors="blue:state == 'draft';black:state in ('open','close');gray:state == 'cancel'" string="工作卡">
                 <field name="archive_no"/>
+                <field name="work_id"/>
                 <field name="project_id"/>
                 <field name="state"/>
             </tree>
             </field>
         </record>
 
+
+        <record id="designer_archive_view_search" model="ir.ui.view">
+            <field name="name">designer.archive.view.search</field>
+            <field name="model">designer.archive</field>
+            <field name="arch" type="xml">
+                <search string="项目备档单搜素">
+                   <field name="work_id" string="工作卡"/>
+               </search>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="action_designer_archive">
             <field name="name">项目备档单</field>
             <field name="res_model">designer.archive</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <!--<field name="search_view_id" ref="idea.view_idea_idea_search"/>-->
+            <field name="search_view_id" ref="designer_archive_view_search"/>
         </record>
         <menuitem name="项目备档单" parent="base.menu_base_designer_project_pool_12" id="menu_designer_archive_report" action="action_designer_archive" sequence="1"/>
 

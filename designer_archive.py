@@ -31,6 +31,7 @@ class designer_archive(osv.osv):
     _name = 'designer.archive'
     _inherit = ['mail.thread']
     _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'archive_no': fields.char('编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'word_line': fields.one2many('designer.archive.word.line', 'word_id', '文字', readonly=True, states={'draft':[('readonly',False)]}),
         'image_line': fields.one2many('designer.archive.image.line', 'image_id', '图片', readonly=True, states={'draft':[('readonly',False)]}),

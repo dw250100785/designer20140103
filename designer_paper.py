@@ -29,6 +29,7 @@ class designer_paper(osv.osv):
     """ 竟稿申请"""
     _name = 'designer.paper'
     _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
         'paper_no': fields.char('编号', size=64, required=True),
         'reason': fields.text('原因', help='原因'),

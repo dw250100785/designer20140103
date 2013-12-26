@@ -66,7 +66,6 @@
         'security/access_agreement/ir.model.access.csv',
         'security/access_archive/ir.model.access.csv',
         'security/access_bill/ir.model.access.csv',
-        'security/access_card/ir.model.access.csv',
         'security/access_idea/ir.model.access.csv',
         'security/access_inquiry/ir.model.access.csv',
         'security/access_offer/ir.model.access.csv',
@@ -75,6 +74,7 @@
         'security/access_policy/ir.model.access.csv',
         'security/access_project/ir.model.access.csv',
         'security/access_kehu_ae/ir.model.access.csv',#针对客户部AE
+        'security/access_card/ir.model.access.csv',
         'cn_auto_setup.xml', #中国化
         'designer_user.xml',
         'base_menu.xml',
@@ -82,7 +82,6 @@
         'designer_project_view.xml',
         'designer_brand_view.xml',
         'designer_idea_view.xml',
-        'designer_card_view.xml',
         'designer_archive_view.xml',
         'designer_order_view.xml',
         'designer_paper_view.xml',
@@ -94,6 +93,7 @@
         'designer_offer_view.xml',
         'designer_bill_view.xml',
         'designer_agreement_view.xml',
+        'designer_card_view.xml',#工作卡，统领全局
         'designer_sequence.xml',
         'workflow/designer_workflow.xml',
         'workflow/designer_idea_workflow.xml',

@@ -30,6 +30,7 @@ class designer_project(osv.osv):
     _inherit = ['mail.thread']
     _columns = {
         'create_uid': fields.many2one('res.users','简报撰写人', required=True, readonly=True,states={'draft': [('readonly', False)]}),
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'name': fields.char('项目简报', size=64, required=True, readonly=True, states={'draft': [('readonly', False)]}),
         'partner_id': fields.many2one('res.partner', '客户', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'product_id': fields.many2one('product.product', '产品', readonly=True, required=True, change_default=True, select=True,states={'draft': [('readonly', False)]}),

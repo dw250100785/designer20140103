@@ -32,13 +32,15 @@ class designer_inquiry(osv.osv):
     _name = "designer.inquiry"
     _inherit = ['mail.thread']
     _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'name': fields.char('单号', size=64, required=True, select=True, help="Unique number of the purchase order, computed automatically when the purchase order is created."),
         'partner_id':fields.many2one('res.partner', '制作部', required=True,
             change_default=True, track_visibility='always'),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
         'date_order':fields.date('日期', required=True, select=True, help="Date on which this document has been created."),
         'card_line': fields.one2many('designer.inquiry.line', 'card_id', '物料清单'),
-        'state': fields.selection([('draft', '草稿中'),
+        'state': fields.selection([
+            ('draft', '草稿中'),
             ('open', '已提交给制作部'),
             ('cancel', '已拒绝'),
             ('close', '已完成')],
@@ -98,13 +100,21 @@ class designer_inquiry_line(osv.osv):
     def _get_seq(self, cr, uid, ids, context=None):
         return self.pool.get('ir.sequence').get(cr, uid, 'designer.inquiry.line')
 
+    def _is_zhizuo(self, cr, uid, ids, context=None):
+        res = {}
+        for this_id in ids:
+            if uid.has_group(cr, uid, 'group_designer_make_ae'):
+                res[this_id] = 'true'
+        return res
+
     _columns = {
         'card_id': fields.many2one('designer.inquiry', '工作卡', ondelete='cascade', select=True),
         'line_no': fields.char('编号', required=True,change_default=True, select=True, track_visibility='always'),
         'project_request': fields.text('项目要求', size=64, required=True, change_default=True, select=True, track_visibility='always'),
         'number': fields.integer('数量', required=True, change_default=True, select=True, track_visibility='always'),
         'price': fields.float('价格',digits_compute= dp.get_precision('Price'), required=True, change_default=True, select=True, track_visibility='always'),
-        'subprice': fields.float('总价', required=True, change_default=True, select=True, track_visibility='always'),
+        'subprice': fields.float('总价', required=True, change_default=True, select=True, track_visibility='always',write=['group_designer_make_ae']),#只有制作部可以添写总价
+        #'name': fields.char('Name', size=128, required=True, select=True, write=['base.group_admin'],read=['base.group_admin'] ),
         'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [

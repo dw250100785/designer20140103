@@ -22,6 +22,7 @@
                     </header>
                     <sheet>
                         <group>
+                            <field name="work_id"/>
                             <field name="partner_id"/>
                             <field name="project_ids"/>
                             <field name="date_order"/>
@@ -47,6 +48,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree  string="报价单">
+                    <field name="work_id"/>
                     <field name="partner_id"/>
                     <field name="project_ids"/>
                     <field name="date_order"/>
@@ -92,22 +94,34 @@
         </record>
 
 
-                <!--报价单 -->
-                <record id="action_designer_offer" model="ir.actions.act_window">
-                    <field name="name">报价单</field>
-                    <field name="type">ir.actions.act_window</field>
-                    <field name="res_model">designer.offer</field>
-                    <field name="view_type">form</field>
-                    <field name="view_mode">tree,form</field>
-                    <field name="context">{}</field>
-                    <!--<field name="domain">[('state','in',('draft','sent','cancel'))]</field>-->
-                    <!--<field name="search_view_id" ref="view_sales_order_filter"/>-->
-                    <field name="help" type="html">
-                      <p class="oe_view_nocontent_create">
-                        点击新增报价单.
-                      </p>
-                    </field>
-                </record>
+        <record id="designer_offer_view_search" model="ir.ui.view">
+            <field name="name">designer.offer.view.search</field>
+            <field name="model">designer.offer</field>
+            <field name="arch" type="xml">
+                <search string="报价单搜素">
+                   <field name="work_id" string="工作卡"/>
+               </search>
+            </field>
+        </record>
+
+
+
+        <!--报价单 -->
+        <record id="action_designer_offer" model="ir.actions.act_window">
+            <field name="name">报价单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">designer.offer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <!--<field name="domain">[('state','in',('draft','sent','cancel'))]</field>-->
+            <field name="search_view_id" ref="designer_offer_view_search"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                点击新增报价单.
+              </p>
+            </field>
+        </record>
                 <menuitem id="designer_offer" name = "报价单"  action="action_designer_offer" parent="base.menu_base_designer_price_report_5" sequence="0"/>
 
          <!--设置自增id-->

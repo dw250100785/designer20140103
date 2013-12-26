@@ -22,7 +22,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')#中文乱码
 
-import designer        #项目简报
+import designer_project        #项目简报
 import designer_brand  #品牌
 import designer_idea   #创意简报
 import designer_card   #工作卡

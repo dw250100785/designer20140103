@@ -30,6 +30,7 @@ class designer_offer(osv.osv):
     _name = "designer.offer"
     _inherit = ['mail.thread']
     _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'name': fields.char('单号', size=64, required=True, select=True, help="Unique number of the purchase order, computed automatically when the purchase order is created."),
         'partner_id':fields.many2one('res.partner', '制作部', required=True,
             change_default=True, track_visibility='always'),

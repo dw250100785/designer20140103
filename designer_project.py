@@ -23,12 +23,58 @@ from openerp.osv import osv
 from openerp.osv import fields
 from openerp.tools.translate import _
 import time
+import workflow_func
+from openerp.addons.base.ir import ir_attachment
+
+
+class project_project(osv.osv):
+    _name = 'project.project'
+    _inherit = "project.project"
+    _columns = {
+        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
+        }
+project_project()
 
 class designer_project(osv.osv):
     """ 项目简报"""
     _name = 'designer.project'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread','ir.attachment']
+
+    def _data_get(self, cr, uid, ids, name, arg, context=None):
+        if context is None:
+            context = {}
+        result = {}
+        location = self.pool.get('ir.config_parameter').get_param(cr, uid, 'ir_attachment.location')
+        bin_size = context.get('bin_size')
+        for attach in self.browse(cr, uid, ids, context=context):
+            if location and attach.store_fname:
+                result[attach.id] = self._file_read(cr, uid, location, attach.store_fname, bin_size)
+            else:
+                result[attach.id] = attach.db_datas
+        return result
+
+    def _data_set(self, cr, uid, id, name, value, arg, context=None):
+        # We dont handle setting data to null
+        if not value:
+            return True
+        if context is None:
+            context = {}
+        location = self.pool.get('ir.config_parameter').get_param(cr, uid, 'ir_attachment.location')
+        file_size = len(value.decode('base64'))
+        if location:
+            attach = self.browse(cr, uid, id, context=context)
+            if attach.store_fname:
+                self._file_delete(cr, uid, location, attach.store_fname)
+            fname = self._file_write(cr, uid, location, value)
+            super(ir_attachment, self).write(cr, uid, [id], {'store_fname': fname, 'file_size': file_size}, context=context)
+        else:
+            super(ir_attachment, self).write(cr, uid, [id], {'db_datas': value, 'file_size': file_size}, context=context)
+        return True
+
+
     _columns = {
+        'datas_fname': fields.char('附件名',required=True,size=256),#必须上传附件
+        'datas': fields.function(_data_get, fnct_inv=_data_set, string='附件', type="binary", nodrop=True,required=True),
         'create_uid': fields.many2one('res.users','简报撰写人', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'name': fields.char('项目简报', size=64, required=True, readonly=True, states={'draft': [('readonly', False)]}),
@@ -47,7 +93,14 @@ class designer_project(osv.osv):
             ('cancel', '已拒绝'),
             ('close', '已完成')],
             '状态', readonly=True, track_visibility='onchange',
-        )
+        ),
+         #工作流审批以及记录
+        'wkf_logs':fields.function(
+            workflow_func._get_workflow_logs,
+            string='审批记录',
+            type='one2many',
+            relation="workflow.logs",
+            readonly=True),
     }
     _sql_constraints = [
         ('name', 'unique(name)', 'The name of the idea must be unique')

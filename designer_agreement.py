@@ -59,12 +59,13 @@ class designer_agreement(osv.osv):
     分期付款，比例必须总和为100
     """
 
-    def write(self, cr, uid, ids, values, context = None):
+    def write111(self, cr, uid, ids, values, context = None):
 
         for hetong in self.browse(cr, uid, ids, context=context):
             cr.execute(
                     "SELECT sum(percentage) FROM designer_agreement_rule_line WHERE card_id=%s ",(hetong.id,))
-            percentage = cr.fetchone()[0]#注意参数格式  ()
+            percentage = cr.fetchone()[0]  #注意参数格式  ()
+        print percentage
         if percentage != '100':
             raise osv.except_osv(('错误提示'), ('分期付款比例总和必须为100'))
         else :

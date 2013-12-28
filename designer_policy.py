@@ -43,7 +43,7 @@ class designer_policy(osv.osv):
         ),
     }
     _sql_constraints = [
-        ('policy_no', 'unique(policy_no)', 'The name of the idea must be unique')
+       # ('policy_no', 'unique(policy_no)', 'The name of the idea must be unique')
     ]
 
     _order = 'policy_no asc'
@@ -82,7 +82,7 @@ class designer_policy_line(osv.osv):
         ),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+        #('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
 
     _order = 'line_no asc'

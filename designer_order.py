@@ -89,7 +89,7 @@ class designer_order_line(osv.osv):
     _name = 'designer.order.line'
     _inherit = ['mail.thread']
     _columns = {
-        'order_id': fields.many2one('designer.order', '工单', ondelete='cascade', select=True),
+        'order_id': fields.many2one('designer.order', '工单', ondelete='cascade', select=True),#关联id
         'line_no': fields.char('编号', required=True,change_default=True, select=True, track_visibility='always'),
         #'project_request': fields.text('项目要求', size=64, required=True, change_default=True, select=True, track_visibility='always'),
         'number': fields.integer('数量', required=True, change_default=True, select=True, track_visibility='always'),
@@ -110,7 +110,7 @@ class designer_order_line(osv.osv):
         )
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+       # ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
     }

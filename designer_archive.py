@@ -99,7 +99,7 @@ class designer_archive_image_line(osv.osv):
         'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+      #  ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
     }
@@ -117,7 +117,7 @@ class designer_archive_sample_line(osv.osv):
         'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+       # ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
     }
@@ -135,7 +135,7 @@ class designer_archive_finished_line(osv.osv):
         'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+       # ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
     }
@@ -152,7 +152,7 @@ class designer_archive_product_line(osv.osv):
         'note': fields.text('备注',size=64,change_default=True, select=True, track_visibility='always'),
     }
     _sql_constraints = [
-        ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
+      #  ('line_no', 'unique(line_no)', 'The name of the idea must be unique')
     ]
     _defaults = {
     }

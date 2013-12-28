@@ -23,6 +23,9 @@
                     <sheet>
                         <group>
                             <field name="work_id"/>
+                        </group>
+                        <group>
+
                             <group>
                                 <field name="no"/>
                                 <field name="partner_id"/><!--查看并选择自己的客户-->

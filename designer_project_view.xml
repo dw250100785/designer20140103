@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <form string="项目简报" version="7.0">
                     <header>
-                        <button name="designer_project_open" string="开启" states="draft" class="oe_highlight"/>
-                        <button name="designer_project_close" string="批准" states="open" class="oe_highlight"/>
-                        <button name="designer_project_cancel" string="拒绝" states="open"  class="oe_highlight"/>
+                        <button name="designer_project_open" string="提交" states="draft" class="oe_highlight"/>
+                        <button name="designer_project_close" string="批准" type="workflow_ok" states="open" class="oe_highlight"/>
+                        <button name="designer_project_cancel" string="拒绝" type="workflow_no" states="open"  class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                     </header>
                     <sheet>
@@ -41,7 +41,22 @@
                         <field name="how_to_operating"/>
                         <label for="manager_will"/><newline/>
                         <field name="manager_will"/>
+
                     </sheet>
+                    <group>
+                        <!--<field name="datas" filename="datas_fname" attrs="{'readonly':['|',('is_manager', '==', 'false'),('state','not in','['draft']') ] }/>-->
+                        <field name="datas" filename="datas_fname" attrs="{'invisible': [('state','=','draft')]}" />
+                        <field name="datas_fname" invisible="1" class="oe_inline oe_right"/>
+
+                        <field name="wkf_logs">
+                                <tree string="xxx" colors="red:status== 'no'">
+                                    <field name="uid"/>
+                                    <field name="time" />
+                                    <field name="status"/>
+                                    <field name="info"/>
+                                </tree>
+                        </field>
+                    </group>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
                         <field name="message_ids" widget="mail_thread"/>
@@ -87,6 +102,23 @@
             <field name="search_view_id" ref="designer_project_view_search"/>
         </record>
         <menuitem name="项目简报" parent="base.menu_base_designer_project_report_2" id="menu_designer_project_report" action="action_designer_project" sequence="1"/>
+
+        <!--<record id="project_project_org_form_view" model="ir.ui.view">-->
+            <!--<field name="name">designer_project.project.form.inherit1</field>-->
+            <!--<field name="model">project.project</field>-->
+            <!--<field name="type">form</field>-->
+            <!--<field name="priority" eval="1"/>-->
+            <!--<field name="inherit_id" ref="project_project.edit_project"/>-->
+            <!--<field name="arch" type="xml">-->
+                 <!--<sheet position="inside">-->
+                    <!--<label for="work_id"/>-->
+                    <!--<div name="work_id">-->
+                        <!--<field name="work_id"/>-->
+                    <!--</div>-->
+                 <!--</sheet>-->
+            <!--</field>-->
+       <!--</record>-->
+
 
     </data>
 </openerp>

@@ -65,8 +65,7 @@
                         ('accept', '已领取'),
                         ('done', '已确认')],
                         -->
-                <!--<tree colors="blue:draft;pink:send;black:makeout;red:refuse;green:accept;gray:done" string="发票">-->
-                <tree colors="blue:draft;pink:send;black:makeout;red:refuse;green:accept;gray:done" string="发票">
+                <tree string="发票">
                     <field name="work_id"/>
                     <field name="partner_id"/>
                     <field name="project_ids"/>
@@ -77,6 +76,7 @@
                     <field name="state_draw"/>
                     <field name="state_arrive"/>
                     <field name="date"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>

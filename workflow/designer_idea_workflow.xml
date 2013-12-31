@@ -157,5 +157,19 @@
             <field name="signal">designer_idea_done</field>
         </record>
 
+        <!--添加共享的退回操作-->
+
+        <record model="workflow.transition" id="idea_t51">
+            <field name="act_from" ref="act_idea_confirmed" />
+            <field name="act_to" ref="act_idea_cancel" />
+            <field name="signal">designer_idea_cancel</field>
+        </record>
+
+        <record model="workflow.transition" id="idea_t52">
+            <field name="act_from" ref="act_idea_verify1" />
+            <field name="act_to" ref="act_idea_cancel" />
+            <field name="signal">designer_idea_cancel</field>
+        </record>
+
     </data>
 </openerp>

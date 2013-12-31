@@ -73,8 +73,8 @@ class designer_project(osv.osv):
 
 
     _columns = {
-        'datas_fname': fields.char('附件名',required=True,size=256),#必须上传附件
-        'datas': fields.function(_data_get, fnct_inv=_data_set, string='附件', type="binary", nodrop=True,required=True),
+        #'datas_fname': fields.char('附件名',size=256),#必须上传附件
+        #'datas': fields.function(_data_get, fnct_inv=_data_set, string='附件', type="binary", nodrop=True),
         'create_uid': fields.many2one('res.users','简报撰写人', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'name': fields.char('项目简报', size=64, required=True, readonly=True, states={'draft': [('readonly', False)]}),

@@ -39,6 +39,15 @@ class designer_archive(osv.osv):
         'finished_line': fields.one2many('designer.archive.finished.line', 'finished_id', '成品', readonly=True, states={'draft':[('readonly',False)]}),
         'product_line': fields.one2many('designer.archive.product.line', 'product_id', '实物照片', readonly=True, states={'draft':[('readonly',False)]}),
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
+        'partner_id':fields.related(
+            'project_id',#关联字段
+            'partner_id',#项目简报的
+            string='客户',
+            type='many2one',
+            relation='res.partner',
+            readonly=True,
+            store=True
+        ),
         'state': fields.selection([('draft', '草稿中'),
             ('open', '已批准'),
             ('cancel', '已拒绝'),

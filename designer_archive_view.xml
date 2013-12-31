@@ -19,6 +19,7 @@
                         </group>
                         <label for="project_id"/>
                         <h1><field name="project_id"/></h1>
+                        <h1><field name="partner_id"/></h1>
                         <label for="archive_no"/>
                         <h1><field name="archive_no"/></h1>
                         <group>

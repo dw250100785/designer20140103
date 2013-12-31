@@ -23,6 +23,7 @@
                         <group>
                             <field name="name"/>
                             <field name="project_id"/>
+                            <field name="partner_id"/>
                             <field name="note"/>
                             <separator string="创意策略" colspan="4"/>
                             <field name="policy_line">
@@ -51,6 +52,7 @@
                 <field name="work_id"/>
                 <field name="name"/>
                 <field name="project_id"/>
+                <field name="partner_id"/>
                 <field name="policy_no"/>
                 <field name="state"/>
             </tree>

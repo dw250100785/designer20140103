@@ -37,6 +37,13 @@
 
 <!--有层级的分组-->
     <!--客户部-->
+    <!--
+
+    客户部所有人均可以创建客户信息
+    res_partner group_partner_manager
+    base.group_partner_manager
+
+    -->
     <record id="group_designer_customer" model="res.groups">
         <field name="name">客户部</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
@@ -52,7 +59,7 @@
     <record id="group_designer_customer_ae" model="res.groups">
         <field name="name">客户部业务员</field>
         <field name="category_id" ref="module_category_designer_wuhan"/>
-        <field name="implied_ids" eval="[(4, ref('group_designer_customer'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_designer_customer')),(4, ref('base.group_partner_manager'))]"/><!--测试添加多个继承组-->
         <field name="comment">客户部业务员</field>
     </record>
 

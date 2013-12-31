@@ -54,23 +54,89 @@ class designer_agreement(osv.osv):
 
     def _get_seq(self, cr, uid, ids, context=None):
         return self.pool.get('ir.sequence').get(cr, uid, 'designer.agreement')
+    """
+    分期付款，比例必须总和为100
+    """
+
+    def create(self, cr, uid, vals, context=None):
+
+        card_lines = vals.get('card_line',[])
+        if not card_lines:
+            raise osv.except_osv(('错误提示'), ('必须添写付款信息'))
+        #调试 最佳实践
+        #设断点可以查看传递参数 F7
+
+        #raise osv.except_osv(('错误提示'), (' %s')%(card_lines,))
+
+        sum = 0.00
+        #列表遍历
+        #[[0, False, {'note': '11', 'percentage': 90, 'line_no': 123, 'price': 10}],
+        # [0, False, {'note': '1', 'percentage': 10, 'line_no': 432, 'price': 10}]]
+        #
+        #
+
+        for card_line in range(len(card_lines)):
+            dict_temp = card_lines[card_line][2]
+            sum += dict_temp['percentage']
+        #raise osv.except_osv(('错误提示'), (' %s')%(sum,))
+
+
+
+
+        # if len(card_lines) == 1:
+        #     dict_temp = card_lines[2]
+        #     sum = dict_temp['percentage']
+        # elif len(card_lines) > 1:
+        #     for card_line in card_lines:
+        #         #raise osv.except_osv(('错误提示'), (' %s')%(card_line,))
+        #         dict_temp = card_line[2]
+        #         sum += dict_temp['percentage']
+        #         #sum += card_line[2]['percentage']
+        #         #raise osv.except_osv(('错误提示'), (' %s')%(sum,))
+
+        if sum != 100:
+            raise osv.except_osv(('错误提示'), ('分期付款比例总和必须为100'))
+        else:
+            order =  super(designer_agreement, self).create(cr, uid, vals, context=context)
+        return order
 
     """
     分期付款，比例必须总和为100
     """
 
-    def write111(self, cr, uid, ids, values, context = None):
+    def write11(self, cr, uid, ids, vals, context = None):
+        #分期付款
+        card_lines = vals.get('card_line',[])
+        if not card_lines:
+            raise osv.except_osv(('错误提示'), ('必须添写付款信息'))
+        #调试 最佳实践
+        #设断点可以查看传递参数 F7
 
-        for hetong in self.browse(cr, uid, ids, context=context):
-            cr.execute(
-                    "SELECT sum(percentage) FROM designer_agreement_rule_line WHERE card_id=%s ",(hetong.id,))
-            percentage = cr.fetchone()[0]  #注意参数格式  ()
-        print percentage
-        if percentage != '100':
+        #raise osv.except_osv(('错误提示'), (' %s')%(card_lines,))
+
+        sum = 0.00
+        #列表遍历
+        #[[0, False, {'note': '11', 'percentage': 90, 'line_no': 123, 'price': 10}],
+        # [0, False, {'note': '1', 'percentage': 10, 'line_no': 432, 'price': 10}]]
+        #
+        #
+        if len(card_lines) == 1:
+            dict_temp = card_lines[2]
+            sum = dict_temp['percentage']
+        elif len(card_lines) > 1:
+            for card_line in card_lines:
+                #raise osv.except_osv(('错误提示'), (' %s')%(card_line,))
+                dict_temp = card_line[2]
+                sum += dict_temp['percentage']
+                #sum += card_line[2]['percentage']
+                #raise osv.except_osv(('错误提示'), (' %s')%(sum,))
+
+        if sum != 100:
             raise osv.except_osv(('错误提示'), ('分期付款比例总和必须为100'))
         else :
-            res = super(designer_agreement, self).write(cr, uid, ids, values, context = context)
+            res = super(designer_agreement, self).write(cr, uid, ids, vals, context = context)
         return res
+
 
     #人民币金额转大写程序Python版本
     #Copyright: zinges at foxmail.com

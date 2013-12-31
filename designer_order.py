@@ -39,6 +39,15 @@ class designer_order(osv.osv):
         'order_no': fields.char('工单编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
         'order_line': fields.one2many('designer.order.line', 'order_id', '制作明细', readonly=True, states={'draft':[('readonly',False)]}),
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
+        'partner_id':fields.related(
+            'project_id',#关联字段
+            'partner_id',#项目简报的
+            string='客户',
+            type='many2one',
+            relation='res.partner',
+            readonly=True,
+            store=True
+         ),
         'state': fields.selection([
             ('draft', '草稿中'),
             ('open', '已批准'),

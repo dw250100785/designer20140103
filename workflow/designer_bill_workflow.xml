@@ -122,5 +122,20 @@
             <field name="act_to" ref="act_bill_done" />
             <field name="signal">designer_bill_done</field>
         </record>
+
+        <!--共享  拒绝发票的操作-->
+
+        <record model="workflow.transition" id="bill_t51">
+            <field name="act_from" ref="act_bill_accept" />
+            <field name="act_to" ref="act_bill_refuse" />
+            <field name="signal">designer_bill_refuse</field>
+        </record>
+
+        <record model="workflow.transition" id="bill_t52">
+            <field name="act_from" ref="act_bill_makeout" />
+            <field name="act_to" ref="act_bill_refuse" />
+            <field name="signal">designer_bill_refuse</field>
+        </record>
+
     </data>
 </openerp>

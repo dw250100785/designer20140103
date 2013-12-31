@@ -30,6 +30,15 @@ class designer_policy(osv.osv):
     _columns = {
         'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
+        'partner_id':fields.related(
+            'project_id',#关联字段
+            'partner_id',#项目简报的
+            string='客户',
+            type='many2one',
+            relation='res.partner',
+            readonly=True,
+            store=True
+        ),
         'policy_no': fields.char('编号', size=64, required=True),
         'name': fields.char('名称', size=64, required=True),
         'date': fields.date('日期', help='日期'),

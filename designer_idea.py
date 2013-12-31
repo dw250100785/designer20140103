@@ -28,7 +28,7 @@ import workflow_func
 class designer_idea(osv.osv):
     """ 创意简报"""
     _name = 'designer.idea'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread','ir.attachment']
     _columns = {
         'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
         #'create_uid': fields.many2one('res.users','撰写人', required=True, readonly=True,states={'draft': [('readonly', False)]}),

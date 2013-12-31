@@ -125,38 +125,41 @@
             <field name="arch" type="xml">
                 <form string="工作卡" version="7.0">
                     <header>
-                        <button name="designer_project_open" string="提交" states="draft" class="oe_highlight"/>
-                        <button name="designer_project_close" string="批准" states="open" class="oe_highlight"/>
-                        <button name="designer_project_cancel" string="拒绝" states="open"  class="oe_highlight"/>
+                        <button name="designer_card_open" string="提交" states="draft" class="oe_highlight"/>
+                        <button name="designer_card_close" string="批准" states="open" class="oe_highlight"/>
+                        <button name="designer_card_cancel" string="拒绝" states="open"  class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" style="width:auto">
                             <!--注意 因为xml_id导入先后顺序，工作卡模块要最后导入-->
-                            <button name="%(act_designer_card_2_designer_project)d" string="项目简报" type="action" style="width:70px;height:24px" />
+                            <button name="%(act_designer_card_2_project_project)d" string="项目进度" type="action" style="width:80px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_idea)d" string="创意简报" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_project)d" string="项目简报" type="action" style="width:80px;height:24px" />
 
-                            <button name="%(act_designer_card_2_designer_inquiry)d" string="询价单" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_idea)d" string="创意简报" type="action" style="width:80px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_offer)d" string="报价单" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_inquiry)d" string="询价单" type="action" style="width:80px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_agreement)d" string="合同" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_offer)d" string="报价单" type="action" style="width:80px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_bill)d" string="发票" type="action" style="width:70px;height:24px" />
+                            <button name="%(act_designer_card_2_designer_agreement)d" string="合同" type="action" style="width:80px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_paper)d" string="竟稿申请" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_bill)d" string="发票" type="action" style="width:80px;height:24px" />
+                            <br/>
 
-                            <button name="%(act_designer_card_2_designer_policy)d" string="创意策略" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_paper)d" string="竟稿申请" type="action" style="width:100px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_project_project)d" string="项目进度" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_policy)d" string="创意策略" type="action" style="width:100px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_order)d" string="工单" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_order)d" string="工单" type="action" style="width:100px;height:24px"/>
 
-                            <button name="%(act_designer_card_2_designer_archive)d" string="项目备档" type="action" style="width:70px;height:24px"/>
+                            <button name="%(act_designer_card_2_designer_archive)d" string="项目备档单" type="action" style="width:100px;height:24px"/>
                         </div>
                         <label for="project_id"/>
                         <h1><field name="project_id"/></h1>
+                        <label for="partner_id"/>
+                        <h1><field name="partner_id"/></h1>
                         <label for="card_no"/>
                         <h1><field name="card_no"/></h1>
                         <group>
@@ -186,6 +189,7 @@
             <field name="model">designer.card</field>
             <field name="arch" type="xml">
             <tree colors="blue:state == 'draft';black:state in ('open','close');gray:state == 'cancel'" string="工作卡">
+                <field name="partner_id"/>
                 <field name="card_no"/>
                 <field name="project_id"/>
                 <field name="state"/>

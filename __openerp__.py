@@ -49,20 +49,17 @@
         'mail',
         'base',
         'idea',
-        'project',
+        'project',                  #项目 以及任务管理
+        'project_long_term',        #分阶段
         'account_analytic_analysis',
-        'project_issue',
-        'crm',
-        'sale',
-        'hr',
-        'account',
-        'document',
-        'purchase',
-        'audittrail',#使用审核跟踪
+        'project_issue',            #问题记录
+        'document',                 #文档管理
+        'audittrail',               #使用审核跟踪
         ],
     'data': [
-        'security/designer_security.xml',
-        'security/access_workflow_log/ir.model.access.csv',#工作流审批记录
+        'security/designer_security.xml',                       #权限组
+        'security/designer_rule.xml',                           #访问规则
+        'security/access_workflow_log/ir.model.access.csv',     #工作流审批记录
         'security/access_agreement/ir.model.access.csv',
         'security/access_archive/ir.model.access.csv',
         'security/access_bill/ir.model.access.csv',

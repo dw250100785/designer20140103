@@ -35,10 +35,10 @@ class designer_order(osv.osv):
         return self.pool.get('ir.sequence').get(cr, uid, 'designer.order')
 
     _columns = {
-        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
-        'order_no': fields.char('工单编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
-        'order_line': fields.one2many('designer.order.line', 'order_id', '制作明细', readonly=True, states={'draft':[('readonly',False)]}),
-        'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
+        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
+        'order_no': fields.char('工单编号', required=True,track_visibility='always'),
+        'order_line': fields.one2many('designer.order.line', 'order_id', '制作明细',track_visibility='always' ),
+        'project_id': fields.many2one('designer.project', string='项目简报',track_visibility='always'),
         'partner_id':fields.related(
             'project_id',#关联字段
             'partner_id',#项目简报的

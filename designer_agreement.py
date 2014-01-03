@@ -210,10 +210,12 @@ class designer_agreement(osv.osv):
 
 
 
+#readonly=True,states={'draft': [('readonly', False)]} 一旦提交就无法修改
+
 
     _columns = {
-        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
-        'no': fields.char('合同编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
+        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
+        'no': fields.char('合同编号', required=True,),
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
         'contract_type': fields.many2one('designer.contract.type',string='合同类型', required=True),

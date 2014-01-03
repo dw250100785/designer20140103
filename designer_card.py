@@ -32,8 +32,8 @@ class designer_card(osv.osv):
     _inherit = ['mail.thread']
     _columns = {
         'card_no': fields.char('编号', required=True, readonly=True,states={'draft': [('readonly', False)]}),
-        'card_line': fields.one2many('designer.card.line', 'card_id', '物料清单', readonly=True, states={'draft':[('readonly',False)]}),
-        'project_id': fields.many2one('designer.project', string='项目简报', readonly=True, states={'draft': [('readonly', False)]}),
+        'card_line': fields.one2many('designer.card.line', 'card_id', '物料清单',),
+        'project_id': fields.many2one('designer.project', string='项目简报',),
         'partner_id':fields.related(
             'project_id',#关联字段
             'partner_id',#项目简报的

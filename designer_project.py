@@ -27,13 +27,13 @@ import workflow_func
 from openerp.addons.base.ir import ir_attachment
 
 
-class project_project(osv.osv):
-    _name = 'project.project'
-    _inherit = "project.project"
-    _columns = {
-        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
-        }
-project_project()
+# class project_project(osv.osv):
+#     _name = 'project.project'
+#     _inherit = "project.project"
+#     _columns = {
+#         'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
+#         }
+# project_project()
 
 class designer_project(osv.osv):
     """ 项目简报"""
@@ -71,23 +71,21 @@ class designer_project(osv.osv):
             super(ir_attachment, self).write(cr, uid, [id], {'db_datas': value, 'file_size': file_size}, context=context)
         return True
 
-
+# track_visibility='always'  记录文档修改
     _columns = {
-        #'datas_fname': fields.char('附件名',size=256),#必须上传附件
-        #'datas': fields.function(_data_get, fnct_inv=_data_set, string='附件', type="binary", nodrop=True),
-        'create_uid': fields.many2one('res.users','简报撰写人', required=True, readonly=True,states={'draft': [('readonly', False)]}),
-        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
-        'name': fields.char('项目简报', size=64, required=True, readonly=True, states={'draft': [('readonly', False)]}),
-        'partner_id': fields.many2one('res.partner', '客户', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
-        'product_id': fields.many2one('product.product', '产品', readonly=True, required=True, change_default=True, select=True,states={'draft': [('readonly', False)]}),
+        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
+        'create_uid': fields.many2one('res.users','简报撰写人', required=True, track_visibility='always'),
+        'name': fields.char('项目简报', size=64, required=True, track_visibility='always'),
+        'partner_id': fields.many2one('res.partner', '客户', required=True, change_default=True, select=True, track_visibility='always'),
+        'product_id': fields.many2one('product.product', '产品',  required=True, change_default=True, select=True,),
         'client_current_situation': fields.text('客户情况', help='包括企业背景，历史沿革、经营范围、行业地位、品牌发展状况、产品销售状况、产品特点、价格、消费者关系、通路状况、行销计划、包装策略、当前广告表现、以往广告等', readonly=True, states={'draft': [('readonly', False)]}),
-        'problem': fields.text('面临问题', help='面临问题', readonly=True, states={'draft': [('readonly', False)]}),
-        'ad_requirement': fields.text('广告需求', help='广告需求', readonly=True, states={'draft': [('readonly', False)]}),
-        'client_will': fields.text('客户意向', help='客户意向', readonly=True, states={'draft': [('readonly', False)]}),
-        'how_to_operating': fields.text('如何跟进', help='如何跟进', readonly=True, states={'draft': [('readonly', False)]}),
-        'manager_will': fields.text('总经理意向', help='总经理意向', readonly=True, states={'draft': [('readonly', False)]}),
-        'receiver_uid':fields.many2one('res.users','我方对接人', required=True, readonly=True ,states={'draft': [('readonly', False)]}),
-        'project_ids': fields.many2one('project.project', string='项目', readonly=True, states={'draft': [('readonly', False)]}),
+        'problem': fields.text('面临问题', help='面临问题',track_visibility='onchange',),
+        'ad_requirement': fields.text('广告需求', help='广告需求',track_visibility='onchange',),
+        'client_will': fields.text('客户意向', help='客户意向', track_visibility='onchange',),
+        'how_to_operating': fields.text('如何跟进', help='如何跟进',track_visibility='onchange',),
+        'manager_will': fields.text('总经理意向', help='总经理意向',track_visibility='onchange',),
+        'receiver_uid':fields.many2one('res.users','我方对接人', required=True,track_visibility='onchange',),
+        'project_ids': fields.many2one('project.project', string='项目',track_visibility='onchange',),
         'state': fields.selection([('draft', '草稿中'),
             ('open', '已批准'),
             ('cancel', '已拒绝'),

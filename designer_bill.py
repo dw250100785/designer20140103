@@ -33,7 +33,7 @@ class designer_bill(osv.osv):
     _inherit = ['mail.thread']
 
     _columns = {
-        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
+        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
         'partner_id':fields.many2one('res.partner', '客户', required=True,
             change_default=True, track_visibility='always'),
         'invoice_head': fields.char('发票抬头', size=64, required=True),

@@ -73,6 +73,7 @@
         'designer_user.xml',
         'base_menu.xml',
         'audittrail_log.xml',#审核跟踪
+        'designer_card_view.xml',#工作卡，统领全局
         'designer_project_view.xml',
         'designer_brand_view.xml',
         'designer_idea_view.xml',
@@ -87,7 +88,6 @@
         'designer_offer_view.xml',
         'designer_bill_view.xml',
         'designer_agreement_view.xml',
-        'designer_card_view.xml',#工作卡，统领全局
         'designer_sequence.xml',
         'workflow/designer_workflow.xml',
         'workflow/designer_idea_workflow.xml',

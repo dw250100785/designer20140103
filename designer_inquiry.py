@@ -32,13 +32,13 @@ class designer_inquiry(osv.osv):
     _name = "designer.inquiry"
     _inherit = ['mail.thread']
     _columns = {
-        'work_id': fields.many2one('designer.card', '所属工作卡', readonly=True, states={'draft': [('readonly', False)]}, required=True, change_default=True, select=True, track_visibility='always'),
+        'work_id': fields.many2one('designer.card', '所属工作卡', change_default=True, select=True, track_visibility='always'),
         'name': fields.char('单号', size=64, required=True, select=True, help="Unique number of the purchase order, computed automatically when the purchase order is created."),
         'partner_id':fields.many2one('res.partner', '制作部', required=True,
             change_default=True, track_visibility='always'),
         'project_ids': fields.many2one('designer.project', string='项目简报'),
-        'date_order':fields.date('日期', required=True, select=True, help="Date on which this document has been created."),
-        'card_line': fields.one2many('designer.inquiry.line', 'card_id', '物料清单'),
+        'date_order':fields.date('日期', required=True, select=True, help="Date on which this document has been created.",track_visibility='always'),
+        'card_line': fields.one2many('designer.inquiry.line', 'card_id', '物料清单',track_visibility='always'),
         'state': fields.selection([
             ('draft', '草稿中'),
             ('open', '已提交给制作部'),

@@ -14,9 +14,9 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                     </header>
                     <sheet>
-                        <group>
+                       <!-- <group>
                             <field name="work_id"/>
-                        </group>
+                        </group>-->
                         <label for="name"/>
                         <h1><field name="name"/></h1>
                         <label for="project_ids"/>
@@ -83,6 +83,7 @@
             </field>
         </record>
 
+
         <record id="designer_project_view_search" model="ir.ui.view">
             <field name="name">designer.project.view.search</field>
             <field name="model">designer.project</field>
@@ -92,6 +93,7 @@
                </search>
             </field>
         </record>
+
 
 
         <record model="ir.actions.act_window" id="action_designer_project">

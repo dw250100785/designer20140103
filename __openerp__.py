@@ -48,11 +48,8 @@
         'web',
         'mail',
         'base',
-        'idea',
         'project',                  #项目 以及任务管理
         'project_long_term',        #分阶段
-        'account_analytic_analysis',
-        'project_issue',            #问题记录
         'document',                 #文档管理
         'audittrail',               #使用审核跟踪
         ],
